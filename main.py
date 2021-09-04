@@ -37,7 +37,7 @@ def Eleccion_variables():
     
 
 while True: 
-    print(Fore.YELLOW + "MENU DE OPCIONES - MAPA DE KARNAUGH")
+    print(Fore.YELLOW + "\nMENU DE OPCIONES - MAPA DE KARNAUGH")
     print(Fore.RESET + "Seleccione la opcion que quiere realizar: ")
     print(Fore.RED + "  1. " + Fore.RESET + "Elegir numero de variables")
     print(Fore.RED + "  2. " + Fore.RESET + "Salir")

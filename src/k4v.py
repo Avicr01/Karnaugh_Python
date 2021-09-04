@@ -1,29 +1,31 @@
-def tabla4(listing):
-    print(" P  Q  R  S")
-    print("------------|")
-    print(" 0  0  0  1 | [1]")
-    print(" 0  0  0  0 | [2]")
-    print(" 0  0  1  1 | [3]")
-    print(" 0  0  1  0 | [4]")
-    print(" 0  1  0  1 | [5]")
-    print(" 0  1  0  0 | [6]")
-    print(" 0  1  1  1 | [7]")
-    print(" 1  1  1  0 | [8]")
-    print(" 1  0  0  1 | [9]")
-    print(" 1  0  0  0 | [10]")
-    print(" 1  0  1  1 | [11]")
-    print(" 1  0  1  0 | [12]")
-    print(" 1  1  0  1 | [13]")
-    print(" 1  1  0  0 | [14]")
-    print(" 1  1  1  1 | [15]")
-    print(" 1  1  1  0 | [16]")
+from colorama import Fore, Back, Style
 
-    print("\n\n")
+def tabla4(listing):
+    print(Fore.RED + " P  Q  R  S")
+    print("------------|")
+    print(Fore.RESET +" 0  0  0  1 " + Fore.RED + "| [1]")
+    print(Fore.RESET +" 0  0  0  0 " + Fore.RED + "| [2]")
+    print(Fore.RESET +" 0  0  1  1 " + Fore.RED + "| [3]")
+    print(Fore.RESET +" 0  0  1  0 " + Fore.RED + "| [4]")
+    print(Fore.RESET +" 0  1  0  1 " + Fore.RED + "| [5]")
+    print(Fore.RESET +" 0  1  0  0 " + Fore.RED + "| [6]")
+    print(Fore.RESET +" 0  1  1  1 " + Fore.RED + "| [7]")
+    print(Fore.RESET +" 1  1  1  0 " + Fore.RED + "| [8]")
+    print(Fore.RESET +" 1  0  0  1 " + Fore.RED + "| [9]")
+    print(Fore.RESET +" 1  0  0  0 " + Fore.RED + "| [10]")
+    print(Fore.RESET +" 1  0  1  1 " + Fore.RED + "| [11]")
+    print(Fore.RESET +" 1  0  1  0 " + Fore.RED + "| [12]")
+    print(Fore.RESET +" 1  1  0  1 " + Fore.RED + "| [13]")
+    print(Fore.RESET +" 1  1  0  0 " + Fore.RED + "| [14]")
+    print(Fore.RESET +" 1  1  1  1 " + Fore.RED + "| [15]")
+    print(Fore.RESET +" 1  1  1  0 " + Fore.RED + "| [16]")
+
+    print("\n")
     posib = 16 
     var = " "
 
     for i in range (0, posib):
-        print("variables para [", i , "]");
+        print(Fore.RESET + "Variables para " + Fore.RED + "[ ", i ," ]" + Fore.RESET);
         listing.append(int(input(var)))
 
     return listing
@@ -41,9 +43,9 @@ def k4v(listing):
     line3 = (listing[12], listing[13], listing[15], listing[14])
     line4 = (listing[8], listing[9], listing[11], listing[10])
 
-    print("\n\n")
+    print("\n")
 
-    print("  PQ \ RS      00      01      11      10")
+    print(Fore.LIGHTYELLOW_EX + "  PQ \ RS      00      01      11      10")
     print("          |-------------------------------")
     print("    00    |  ", listing[0] ,"  |  ",listing[1],"  |  ",listing[3],"  |  ",listing[2]," |")
     print("          |-------------------------------")
@@ -53,9 +55,9 @@ def k4v(listing):
     print("          |-------------------------------")
     print("    10    |  ", listing[8] ,"  |  ",listing[9],"  |  ",listing[11],"  |  ",listing[10]," |")
 
-    print("\n\n")
+    print("\n")
 
-    print("  PQ \ RS      00      01      11      10")
+    print(Fore.LIGHTBLUE_EX + "  PQ \ RS      00      01      11      10")
     print("          |---------------------------------")
     print("    00    |  [1]  |  [2]  |  [3]   |  [4]  |")
     print("          |---------------------------------")
@@ -65,7 +67,7 @@ def k4v(listing):
     print("          |---------------------------------")
     print("    10    |  [13] |  [14] |  [15]  |  [16] |")
 
-    print("\n\n")
+    print("\n" + Fore.WHITE)
 
 # Para todos ceros 
     if          line1 == (0, 0, 0, 0) \

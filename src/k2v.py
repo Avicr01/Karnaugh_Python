@@ -1,17 +1,20 @@
+from colorama import Fore, Back, Style
+
 def tabla2(listing):
-    print(" P  Q ")
+    print(Fore.RED + " P  Q ")
     print("------|")
-    print(" 0  0 | [1]")
-    print(" 0  1 | [2]")
-    print(" 1  0 | [3]")
-    print(" 1  1 | [4]")
+    print(Fore.RESET +" 0  0 " + Fore.RED + "| [1]")
+    print(Fore.RESET +" 0  1 " + Fore.RED + "| [2]")
+    print(Fore.RESET +" 1  0 " + Fore.RED + "| [3]")
+    print(Fore.RESET +" 1  1 " + Fore.RED + "| [4]")
 
     posib =  4
-    var = " "
+    var =  " "
 
     for i in range (0, posib):
-        print("variables para [", i , "]");
+        print(Fore.RESET + "Variables para " + Fore.RED + "[ ", i ," ]" + Fore.RESET);
         listing.append(int(input(var)))
+
     return listing
 
 
@@ -24,23 +27,23 @@ def k2v(listing):
     line1 = (listing[0], listing[1])
     line2 = (listing[2], listing[3])
 
-    print("\n\n")
+    print("\n")
 
-    print("  P \ Q      0      1")
+    print(Fore.LIGHTYELLOW_EX + "  P \ Q      0      1")
     print("         |---------------")
     print("    0    |  ", listing[0] ,"  |  ",listing[1]," |")
     print("         |---------------")
     print("    1    |  ", listing[2] ,"  |  ",listing[3]," |")
 
-    print("\n\n")
+    print("\n")
 
-    print("  P \ Q      0      1")
+    print(Fore.LIGHTBLUE_EX + "  P \ Q      0      1")
     print("         |---------------")
     print("    0    |  [1]  |  [2]  |")
     print("         |---------------")
     print("    1    |  [3]  |  [4]  |")
 
-    print("\n\n")
+    print("\n" + Fore.WHITE)
 
 # Para todos ceros 
     if line1 == (0, 0) and line2 == (0, 0):
@@ -108,4 +111,4 @@ def k2v(listing):
         print("Grupo de 1 = { [4] }")
         print("Funcion simplificada, S(P, Q) = PQ")
 
-    print("\n\n")
+    print("\n")

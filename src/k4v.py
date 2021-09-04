@@ -580,7 +580,3 @@ def k4v(listing):
         print("Funcion simplificada, S(P, Q, R, S) = PQ'RS'")
 
     print("\n\n")
-
-listado = []
-tabla4(listado)
-k4v(listado)

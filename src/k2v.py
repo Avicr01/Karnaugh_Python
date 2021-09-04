@@ -109,7 +109,3 @@ def k2v(listing):
         print("Funcion simplificada, S(P, Q) = PQ")
 
     print("\n\n")
-
-listado = []
-tabla2(listado)
-k2v(listado)

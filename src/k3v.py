@@ -47,8 +47,54 @@ def mapaKarnaugh3 (listing):
 
     elif line1 == (1,1,1,0) and line2 == (1,1,1,1):
         print("Grupo de 4 = [1],[2],[3],[4]")
-        print("Grupo de 4 = [3],[4],[7],[8]") 
+        print("Grupo de 4 = [3],[4],[7],[8]")
         print("Grupo de 4 = [2],[4],[8],[6]")
-        print("Funcion simplificada, f(P, Q, R) = Q' + R + P ")# Para todos unos
-"Q" no se reconoce como un comando interno o externo,
-programa o archivo por lotes ejecutable.
+        print("Funcion simplificada, f(P, Q, R) = Q' + R + P ")
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")# Case 01 
+
+    elif line1 == (1,1,0,1) and line2 == (1,1,1,1):
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [1],[2],[5],[6]")
+        print("Grupo de 4 = [2],[4],[8],[6]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")# case 01
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
+
+
+
+
+
+

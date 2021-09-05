@@ -50,3 +50,5 @@ def mapaKarnaugh3 (listing):
         print("Grupo de 4 = [3],[4],[7],[8]") 
         print("Grupo de 4 = [2],[4],[8],[6]")
         print("Funcion simplificada, f(P, Q, R) = Q' + R + P ")# Para todos unos
+"Q" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.

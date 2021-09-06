@@ -1,5 +1,5 @@
 from colorama import Fore, Back, Style
-
+#comentario
 def tabla2(listing):
     print(Fore.RED + " P  Q ")
     print("------|")

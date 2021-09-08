@@ -1,4 +1,4 @@
-def tabla3():
+def tabla3(listing):
     print(" P  Q  R ")
     print("----------")
     print(" 0  0  0 | [1]")
@@ -19,7 +19,7 @@ def tabla3():
  
 
 #Para todos los ceros
-def mapaKarnaugh3 (listing):
+def k3v (listing):
     print("P \\ QR   00   01   11   10")
     print("         |-------------------")
     print("    0    |  ", listing[0] ,"  |  ",listing[2],"  |  ",listing[6],"  |  ",listing[4]," |")

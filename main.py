@@ -1,5 +1,5 @@
 from src.k2v import k2v, tabla2
-# from src.k3v import k3v, tabla3
+from src.k3v import k3v, tabla3
 from src.k4v import k4v, tabla4
 import os
 import time
@@ -28,9 +28,8 @@ def Eleccion_variables():
         tabla2(listing)
         k2v(listing)
     elif option == 3:
-        print("hello")
-        # tabla3(listing)
-        # k3v(listing)
+        tabla3(listing)
+        k3v(listing)
     elif option == 4:
         tabla4(listing)
         k4v(listing)

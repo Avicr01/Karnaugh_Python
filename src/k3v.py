@@ -36,15 +36,17 @@ def k3v (listing):
     line2 = ()
     line1 = (listing[0],listing[2],listing[6],listing[4])
     line2 = (listing[1],listing[3],listing[7],listing[5])
-
+    # Todos de 0
     if line1 == (0, 0, 0, 0) and line2 == (0, 0, 0, 0):
         print("No hay grupos")
         print("Funcion simplificada, S( P , Q , R )  = 0")
 
+    # Todos de 1
     elif line1 == (1, 1, 1, 1) and line2 == (1, 1, 1, 1):
         print("Grupo de 8 = [1], [2], [3], [4], [5], [6], [7], [8]")
         print("Funcion simplificada, S( P , Q , R )  = 1")
 
+    # Grupos de 7 de 1
     elif line1 == (1,1,1,0) and line2 == (1,1,1,1):
         print("Grupo de 4 = [1],[2],[3],[4]")
         print("Grupo de 4 = [3],[4],[7],[8]")
@@ -92,7 +94,15 @@ def k3v (listing):
         print("Grupo de 4 = [1],[2],[3],[4]")
         print("Grupo de 4 = [3],[4],[7],[8]")
         print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
-
+# Grupos de 6 de 1
+# Grupos de 5 de 1
+# Grupos de 4 de 1
+# Grupos de 3 de 1
+# Grupos de 2 de 1
+# Grupos de 1 de 1
+    elif line1 == (1,0,0,0) and line2 == (0,0,0,0):
+        print("Grupo de 1 = [1]")
+        print("Funcion simplificada, f(P, Q, R) = P'Q'R'")
 
 
 

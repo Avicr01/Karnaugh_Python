@@ -22,7 +22,7 @@ def Eleccion_variables():
         option = int(input("Elija el numero de variables que requiera: "))
         print(option)
 
-    listing = [ ] 
+    listing = [] 
 
     if option == 2:
         tabla2(listing)

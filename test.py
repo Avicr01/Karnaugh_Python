@@ -22,52 +22,62 @@ def tabla4(listing):
     print(Fore.RESET +" 1  1  1  0 " + Fore.RED + "| [16]")
 
     print("\n")
-    posib = 16 
-    var = " "
+    R = 4
+    C = 4
+    size = R * C
+    var = []
 
-    for i in range (0, posib):
+    for i in range (0, size):
         print(Fore.RESET + "Variables para " + Fore.RED + "[ ", i ," ]" + Fore.RESET);
-        listing.append(int(input(var)))
+        var.append(int(input()))
 
-    return listing
+    listing = list(map(int, listing))
+    M = np.array(listing).reshap(R, C)
+    print(M)
 
-def k4v(listing):
-    posib = 16
-    var = " "
-    line1 = ()
-    line2 = ()
-    line3 = ()
-    line4 = ()
+    return M
 
-    line1 = (listing[0], listing[1], listing[3], listing[2])
-    line2 = (listing[4], listing[5], listing[7], listing[6])
-    line3 = (listing[12], listing[13], listing[15], listing[14])
-    line4 = (listing[8], listing[9], listing[11], listing[10])
+def k4v(M):
+    print(M)
 
-    print("\n")
+#    posib = 16
+#    var = " "
+#    line1 = ()
+#    line2 = ()
+#    line3 = ()
+#    line4 = ()
+#
+#    line1 = (listing[0], listing[1], listing[3], listing[2])
+#    line2 = (listing[4], listing[5], listing[7], listing[6])
+#    line3 = (listing[12], listing[13], listing[15], listing[14])
+#    line4 = (listing[8], listing[9], listing[11], listing[10])
+#
+#    print("\n")
+#
+#    print(Fore.LIGHTYELLOW_EX + "  PQ \ RS      00      01      11      10")
+#    print("          |-------------------------------")
+#    print("    00    |  ", listing[0] ,"  |  ",listing[1],"  |  ",listing[3],"  |  ",listing[2]," |")
+#    print("          |-------------------------------")
+#    print("    01    |  ", listing[4] ,"  |  ",listing[5],"  |  ",listing[7],"  |  ",listing[6]," |")
+#    print("          |-------------------------------")
+#    print("    11    |  ", listing[12] ,"  |  ",listing[13],"  |  ",listing[15],"  |  ",listing[14]," |")
+#    print("          |-------------------------------")
+#    print("    10    |  ", listing[8] ,"  |  ",listing[9],"  |  ",listing[11],"  |  ",listing[10]," |")
+#
+#    print("\n")
+#
+#    print(Fore.LIGHTBLUE_EX + "  PQ \ RS      00      01      11      10")
+#    print("          |---------------------------------")
+#    print("    00    |  [1]  |  [2]  |  [3]   |  [4]  |")
+#    print("          |---------------------------------")
+#    print("    01    |  [5]  |  [6]  |  [7]   |  [8]  |")
+#    print("          |---------------------------------")
+#    print("    11    |  [9]  |  [10] |  [11]  |  [12] |")
+#    print("          |---------------------------------")
+#    print("    10    |  [13] |  [14] |  [15]  |  [16] |")
+#
+#    print("\n" + Fore.WHITE)
 
-    print(Fore.LIGHTYELLOW_EX + "  PQ \ RS      00      01      11      10")
-    print("          |-------------------------------")
-    print("    00    |  ", listing[0] ,"  |  ",listing[1],"  |  ",listing[3],"  |  ",listing[2]," |")
-    print("          |-------------------------------")
-    print("    01    |  ", listing[4] ,"  |  ",listing[5],"  |  ",listing[7],"  |  ",listing[6]," |")
-    print("          |-------------------------------")
-    print("    11    |  ", listing[12] ,"  |  ",listing[13],"  |  ",listing[15],"  |  ",listing[14]," |")
-    print("          |-------------------------------")
-    print("    10    |  ", listing[8] ,"  |  ",listing[9],"  |  ",listing[11],"  |  ",listing[10]," |")
-
-    print("\n")
-
-    print(Fore.LIGHTBLUE_EX + "  PQ \ RS      00      01      11      10")
-    print("          |---------------------------------")
-    print("    00    |  [1]  |  [2]  |  [3]   |  [4]  |")
-    print("          |---------------------------------")
-    print("    01    |  [5]  |  [6]  |  [7]   |  [8]  |")
-    print("          |---------------------------------")
-    print("    11    |  [9]  |  [10] |  [11]  |  [12] |")
-    print("          |---------------------------------")
-    print("    10    |  [13] |  [14] |  [15]  |  [16] |")
-
-    print("\n" + Fore.WHITE)
-
-    
+listing = []
+M = tabla4(listing)
+k4v(M)

@@ -481,7 +481,7 @@ def k4v(listing):
         # 2 variables, Grupos de unos
         # TODO HACER LOS GRUPOS DE UNOS
 
-
+# TODO Falta algo 
 # Para grupos de 1 unos
     elif        line1 == (1, 0, 0, 0) \
             and line2 == (0, 0, 0, 0) \

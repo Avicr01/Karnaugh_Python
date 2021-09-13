@@ -101,6 +101,7 @@ def k3v (listing):
         print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
 
 #Grupos de 6 de 1 (dos ceros)
+#Grupos de seis unos (dos ceros)
 #GRUPOS DE CEROS
 #Grupo de [1] con el resto [ ]
     elif line1 == (0,0,1,1) and line2 == (1,1,1,1): #ceros en [1] y [3]
@@ -267,8 +268,7 @@ def k3v (listing):
 
 #No hay grupos de [8] porque ya se asoció con todos
 
-
-# Grupos de 5 de 1 (tres ceros)
+#GRUPOS DE CINCO UNOS (tres ceros)
 #Grupos de [1] [ ] [ ]
 #Grupos de [1] [2] [ ]
     elif line1 == (0,0,1,1) and line2 == (0,1,1,1): #ceros en [1] , [2] y [3]
@@ -339,12 +339,14 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = P'R + PR' + QR")
 
     elif line1 == (0,1,1,1) and line2 == (1,0,1,0): #ceros en [1] , [4] y [6]
+        print("Grupo de 1 = [2]")
         print("Grupo de 2 = [3],[7]")
         print("Grupo de 2 = [7],[5]")
         print("Grupo de 2 = [7],[8]")
         print("Funcion simplificada, S(P, Q, R) = P'R + P'Q + PQ'R' + QR")
 
     elif line1 == (0,1,0,1) and line2 == (1,0,1,1): #ceros en [1] , [4] y [7]
+        print("Grupo de 1 = [3]")
         print("Grupo de 2 = [8],[6]")
         print("Grupo de 2 = [5],[6]")
         print("Grupo de 2 = [6],[2]")
@@ -375,6 +377,7 @@ def k3v (listing):
 
 #Grupos de [1] [6] [ ]
     elif line1 == (0,1,0,1) and line2 == (1,1,1,0): #ceros en [1] , [6] y [7]
+        print("Grupo de 1 = [5]")
         print("Grupo de 2 = [3],[4]")
         print("Grupo de 2 = [2],[4]")
         print("Grupo de 2 = [4],[8]")
@@ -402,6 +405,7 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = P'R' + Q")
 
     elif line1 == (1,0,1,0) and line2 == (0,1,1,1): #ceros en [2] , [3] y [5]
+        print("Grupo de 1 = [1]")
         print("Grupo de 2 = [4],[8]")
         print("Grupo de 2 = [7],[8]")
         print("Grupo de 2 = [8],[6]")
@@ -420,6 +424,7 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = P'R' + PR + QR'")
 
     elif line1 == (1,0,1,1) and line2 == (0,1,0,1): #ceros en [2] , [3] y [8]
+        print("Grupo de 1 = [4]")
         print("Grupo de 2 = [7],[5]")
         print("Grupo de 2 = [5],[6]")
         print("Grupo de 2 = [5],[1]")
@@ -461,6 +466,7 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = P'Q' + PQ + Q'R")
 
     elif line1 == (1,1,1,0) and line2 == (0,1,0,1): #ceros en [2] , [5] y [8]
+        print("Grupo de 1 = [6]")
         print("Grupo de 2 = [1],[3]")
         print("Grupo de 2 = [3],[7]")
         print("Grupo de 2 = [3],[4]")
@@ -523,6 +529,7 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = Q'R' + P")
 
     elif line1 == (1,0,1,0) and line2 == (1,1,0,1): #ceros en [3] , [5] y [8]
+        print("Grupo de 1 = [7]")
         print("Grupo de 2 = [1],[2]")
         print("Grupo de 2 = [2],[4]")
         print("Grupo de 2 = [6],[2]")
@@ -570,6 +577,7 @@ def k3v (listing):
 
 #Grupos de [4] [6] [ ]
     elif line1 == (1,1,0,1) and line2 == (1,0,1,0): #ceros en [4] , [6] y [7]
+        print("Grupo de 1 = [8]")
         print("Grupo de 2 = [1],[2]")
         print("Grupo de 2 = [1],[3]")
         print("Grupo de 2 = [5],[1]")
@@ -615,7 +623,7 @@ def k3v (listing):
 #No hay grupos de [7] [ ] [ ] ni [8] [ ] [ ] porque ya está incluido en los anteriores
 
 
-# Grupos de 4 de 1 (cuatro ceros)
+#GRUPOS DE CUATRO UNOS (cuatro ceros)
 #Grupos de [1] [ ] [ ] [ ]
 #Grupos de [1] [2] [ ] [ ]
 #Grupos de [1] [2] [3] [ ]
@@ -657,6 +665,7 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = P'R + P'Q + QR")
 
     elif line1 == (0,1,0,1) and line2 == (0,0,1,1): #ceros en [1] , [2] , [4] , [7]
+        print("Grupo de 1 = [3]")
         print("Grupo de 2 = [5],[6]")
         print("Grupo de 2 = [8],[6]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R + QR' + PQ")
@@ -677,12 +686,14 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = Q'R + PQ")
 
     elif line1 == (0,1,1,0) and line2 == (0,1,0,1): #ceros en [1] , [2] , [5] , [8]
+        print("Grupo de 1 = [6]")
         print("Grupo de 2 = [3],[4]")
         print("Grupo de 2 = [3],[7]")
         print("Funcion simplificada, S(P, Q, R) = P'R + Q'R + PQR'")
 
 #Grupos de [1] [2] [6] [ ]
     elif line1 == (0,1,0,1) and line2 == (0,1,1,0): #ceros en [1] , [2] , [6] , [7]
+        print("Grupo de 1 = [5]")
         print("Grupo de 2 = [3],[4]")
         print("Grupo de 2 = [4],[8]")
         print("Funcion simplificada, S(P, Q, R) = Q'R + P'QR' + PR")
@@ -707,6 +718,7 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = QR + PR'")
 
     elif line1 == (0,0,1,1) and line2 == (1,0,1,0): #ceros en [1] , [3] , [4] , [6]
+        print("Grupo de 1 = [2]")
         print("Grupo de 2 = [7],[5]")
         print("Grupo de 2 = [7],[8]")
         print("Funcion simplificada, S(P, Q, R) = P'Q + PQ'R' + QR")
@@ -733,12 +745,14 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = P")
 
     elif line1 == (0,0,1,0) and line2 == (1,1,0,1): #ceros en [1] , [3] , [5] , [8]
+        print("Grupo de 1 = [7]")
         print("Grupo de 2 = [2],[4]")
         print("Grupo de 2 = [6],[2]")
         print("Funcion simplificada, S(P, Q, R) = P'QR + PQ' + PR'")
 
 #Grupos de [1] [3] [6] [ ]
     elif line1 == (0,0,0,1) and line2 == (1,1,1,0): #ceros en [1] , [3] , [6] , [7]
+        print("Grupo de 1 = [5]")
         print("Grupo de 2 = [2],[4]")
         print("Grupo de 2 = [4],[8]")
         print("Funcion simplificada, S(P, Q, R) = P'QR' + PQ' + PR")
@@ -758,11 +772,13 @@ def k3v (listing):
 #Grupos de [1] [4] [ ] [ ]
 #Grupos de [1] [4] [5] [ ]
     elif line1 == (0,1,1,0) and line2 == (1,0,1,0): #ceros en [1] , [4] , [5] , [6]
+        print("Grupo de 1 = [2]")
         print("Grupo de 2 = [3],[7]")
         print("Grupo de 2 = [7],[8]")
         print("Funcion simplificada, S(P, Q, R) = P'R + PQ'R' + QR")
 
     elif line1 == (0,1,0,0) and line2 == (1,0,1,1): #ceros en [1] , [4] , [5] , [7]
+        print("Grupo de 1 = [3]")
         print("Grupo de 2 = [8],[6]")
         print("Grupo de 2 = [6],[2]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R + PR' + PQ")
@@ -774,16 +790,21 @@ def k3v (listing):
 
 #Grupos de [1] [4] [6] [ ]
     elif line1 == (0,1,0,1) and line2 == (1,0,1,0): #ceros en [1] , [4] , [6] , [7] #DUDAA
-        print("No hay grupos")
+        print("Grupo de 1 = [2]")
+        print("Grupo de 1 = [3]")
+        print("Grupo de 1 = [8]")
+        print("Grupo de 1 = [5]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R + P'QR' + PQ'R' + PQR")
 
     elif line1 == (0,1,1,1) and line2 == (1,0,0,0): #ceros en [1] , [4] , [6] , [8]
+        print("Grupo de 1 = [2]")
         print("Grupo de 2 = [3],[7]")
         print("Grupo de 2 = [7],[5]")
         print("Funcion simplificada, S(P, Q, R) = P'R + P'Q + PQ'R'")
 
 #Grupos de [1] [4] [7] [ ]
     elif line1 == (0,1,0,1) and line2 == (1,0,0,1): #ceros en [1] , [4] , [7] , [8]
+        print("Grupo de 1 = [3]")
         print("Grupo de 2 = [5],[6]")
         print("Grupo de 2 = [6],[2]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R + QR' + PR'")
@@ -812,6 +833,7 @@ def k3v (listing):
 #Grupos de [1] [6] [ ] [ ]
 #Grupos de [1] [6] [7] [ ]
     elif line1 == (0,1,0,1) and line2 == (1,1,0,0): #ceros en [1] , [6] , [7] , [8]
+        print("Grupo de 1 = [3]")
         print("Grupo de 2 = [2],[4]")
         print("Grupo de 2 = [3],[4]")
         print("Funcion simplificada, S(P, Q, R) = Q'R + P'QR' + PQ'")
@@ -820,6 +842,7 @@ def k3v (listing):
 #Grupos de [2] [ ] [ ] [ ]
 #Grupos de [2] [3] [4] [ ]
     elif line1 == (1,0,1,0) and line2 == (0,0,1,1): #ceros en [2] , [3] , [4] , [5]
+        print("Grupo de 1 = [1]")
         print("Grupo de 2 = [7],[8]")
         print("Grupo de 2 = [8],[6]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R' + QR + PQ")
@@ -842,31 +865,39 @@ def k3v (listing):
 
 #Grupos de [2] [3] [5] [ ]
     elif line1 == (1,0,1,0) and line2 == (0,1,1,0): #ceros en [2] , [3] , [5] , [6]
+        print("Grupo de 1 = [1]")
         print("Grupo de 2 = [4],[8]")
         print("Grupo de 2 = [7],[8]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R' + QR + PR")
 
     elif line1 == (1,0,0,0) and line2 == (0,1,1,1): #ceros en [2] , [3] , [5] , [7]
-        print("Grupo de 2 = [4],[8]")
-        print("Grupo de 2 = [8],[6]")
-        print("Funcion simplificada, S(P, Q, R) = P'Q'R' + PR + PQ")
-
-    elif line1 == (1,0,1,1) and line2 == (0,0,0,1): #ceros en [2] , [3] , [5] , [8] #DUDAA
-        print("No hay grupos")
-        print("Funcion simplificada, S(P, Q, R) = P'Q'R' + P'QR + PQ'R + PQR'")
-
-#Grupos de [2] [3] [6] [ ]
-    elif line1 == (1,0,0,0) and line2 == (0,1,1,1): #ceros en [2] , [3] , [5] , [7]
+        print("Grupo de 1 = [1]")
         print("Grupo de 2 = [4],[8]")
         print("Grupo de 2 = [8],[6]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R' + PR + PQ")
 
     elif line1 == (1,0,1,0) and line2 == (0,1,0,1): #ceros en [2] , [3] , [5] , [8] #DUDAA
-        print("No hay grupos")
+        print("Grupo de 1 = [3]")
+        print("Grupo de 1 = [5]")
+        print("Grupo de 1 = [2]")
+        print("Grupo de 1 = [8]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R' + P'QR + PQ'R + PQR'")
+
+#Grupos de [2] [3] [6] [ ]
+    elif line1 == (1,0,0,1) and line2 == (0,1,1,0): #ceros en [2] , [3] , [6] , [7]
+        print("Grupo de 2 = [4],[8]")
+        print("Grupo de 2 = [5],[1]")
+        print("Funcion simplificada, S(P, Q, R) = P'R' + PR")
+
+    elif line1 == (1,0,1,0) and line2 == (0,1,0,1): #ceros en [2] , [3] , [6] , [8] #DUDAA
+        print("Grupo de 1 = [4]")
+        print("Grupo de 2 = [7],[5]")
+        print("Grupo de 2 = [5],[1]")
+        print("Funcion simplificada, S(P, Q, R) = P'R' + P'Q + PQ'R")
 
 #Grupos de [2] [3] [7] [ ]
     elif line1 == (1,0,0,1) and line2 == (0,1,0,1): #ceros en [2] , [3] , [7] , [8]
+        print("Grupo de 1 = [4]")
         print("Grupo de 2 = [5],[6]")
         print("Grupo de 2 = [5],[1]")
         print("Funcion simplificada, S(P, Q, R) = P'R' + PQ'R + QR'")
@@ -875,7 +906,7 @@ def k3v (listing):
     elif line1 == (1,1,1,0) and line2 == (0,0,1,0): #ceros en [2] , [4] , [5] , [6]
         print("Grupo de 2 = [1],[3]")
         print("Grupo de 2 = [7],[8]")
-        print("Funcion simplificada, S(P, Q, R) = P'R' + PQ'R + QR'")
+        print("Funcion simplificada, S(P, Q, R) = P'Q' + QR")
 
     elif line1 == (1,1,0,0) and line2 == (0,0,1,1): #ceros en [2] , [4] , [5] , [7]
         print("Grupo de 2 = [1],[3]")
@@ -883,12 +914,14 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = P'Q' + PQ")
 
     elif line1 == (1,1,1,0) and line2 == (0,0,0,1): #ceros en [2] , [4] , [5] , [8]
+        print("Grupo de 1 = [6]")
         print("Grupo de 2 = [1],[3]")
         print("Grupo de 2 = [3],[7]")
         print("Funcion simplificada, S(P, Q, R) = P'Q' + P'R + PQR'")
         
 #Grupos de [2] [4] [6] [ ]
     elif line1 == (1,1,0,1) and line2 == (0,0,1,0): #ceros en [2] , [4] , [6] , [7]
+        print("Grupo de 1 = [8]")
         print("Grupo de 2 = [1],[3]")
         print("Grupo de 2 = [5],[1]")
         print("Funcion simplificada, S(P, Q, R) = P'Q' + P'R' + PQR")
@@ -917,8 +950,9 @@ def k3v (listing):
 
 #Grupos de [2] [5] [7] [ ]
     elif line1 == (1,1,0,0) and line2 == (0,1,0,1): #ceros en [2] , [5] , [7] , [8]
+        print("Grupo de 1 = [6]")
         print("Grupo de 2 = [1],[3]")
-        print("Grupo de 2 = [3],[3]")
+        print("Grupo de 2 = [3],[4]")
         print("Funcion simplificada, S(P, Q, R) = P'Q' + Q'R + PQR'")
 
 #Grupos de [2] [6] [7] [ ]
@@ -941,12 +975,14 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = Q'R' + PQ")
 
     elif line1 == (1,0,1,0) and line2 == (1,0,0,1): #ceros en [3] , [4] , [5] , [8]
+        print("Grupo de 1 = [7]")
         print("Grupo de 2 = [1],[2]")
         print("Grupo de 2 = [6],[2]")
         print("Funcion simplificada, S(P, Q, R) = Q'R' + P'QR + PR'")
 
 #Grupos de [3] [4] [6] [ ]
     elif line1 == (1,0,0,1) and line2 == (1,0,1,0): #ceros en [3] , [4] , [6] , [7]
+        print("Grupo de 1 = [8]")
         print("Grupo de 2 = [1],[2]")
         print("Grupo de 2 = [5],[1]")
         print("Funcion simplificada, S(P, Q, R) = P'R' + Q'R' + PQR")
@@ -968,6 +1004,7 @@ def k3v (listing):
         print("Funcion simplificada, S(P, Q, R) = Q'R' + PR")
 
     elif line1 == (1,0,1,0) and line2 == (1,1,0,0): #ceros en [3] , [5] , [6] , [8]
+        print("Grupo de 1 = [7]")
         print("Grupo de 2 = [1],[2]")
         print("Grupo de 2 = [2],[4]")
         print("Funcion simplificada, S(P, Q, R) = Q'R' + P'QR + PQ'")
@@ -989,6 +1026,7 @@ def k3v (listing):
 #Grupos de [4] [ ] [ ] [ ]
 #Grupos de [4] [5] [6] [ ]
     elif line1 == (1,1,0,0) and line2 == (1,0,1,0): #ceros en [4] , [5] , [6] , [7]
+        print("Grupo de 1 = [8]")
         print("Grupo de 2 = [1],[3]")
         print("Grupo de 2 = [1],[2]")
         print("Funcion simplificada, S(P, Q, R) = P'Q' + Q'R' + PQR")
@@ -1020,7 +1058,6 @@ def k3v (listing):
 #Grupos de [5] [7] [ ] [ ] ya están incluidos en las anteriores
 
 #No hay grupos de [6] [ ] [ ] [ ], [7] [ ] [ ] [ ], [8] [ ] [ ] [ ] porque ya están dentro de las anteriores
-
 
 # Grupos de 3 de 1 - TODO IMPLEMENTAR EL RESTO DE 3
 #de tres unos-------------------------------------------
@@ -1296,11 +1333,37 @@ def k3v (listing):
          print("Funcion simplificada, f(P , Q, R) = PR' ")
 
 # Grupos de 1 de 1
-    elif line1 == (1,0,0,0) and line2 == (0,0,0,0):
+    elif line1 == (1,0,0,0) and line2 == (0,0,0,0):  #caso en [1]
         print("Grupo de 1 = [1]")
-        print("Funcion simplificada, f(P, Q, R) = P'Q'R'")
+        print("Funcion simplificada, S(P, Q, R) = P'Q'R'")
 
+    elif line1 == (0,0,0,0) and line2 == (1,0,0,0):  #caso en [2]
+        print("Grupo de 1 = [2]")
+        print("Funcion simplificada, S(P, Q, R) = PQ'R'")
 
+    elif line1 == (0,1,0,0) and line2 == (0,0,0,0):  #caso en [3]
+        print("Grupo de 1 = [3]")
+        print("Funcion simplificada, S(P, Q, R) = P'Q'R")
+
+    elif line1 == (0,0,0,0) and line2 == (0,1,0,0):  #caso en [4]
+        print("Grupo de 1 = [4]")
+        print("Funcion simplificada, S(P, Q, R) = PQ'R")
+
+    elif line1 == (0,0,0,1) and line2 == (0,0,0,0):  #caso en [5]
+        print("Grupo de 1 = [5]")
+        print("Funcion simplificada, S(P, Q, R) = P'QR'")
+
+    elif line1 == (0,0,0,0) and line2 == (0,0,0,1):  #caso en [6]
+        print("Grupo de 1 = [6]")
+        print("Funcion simplificada, S(P, Q, R) = P'Q'R")
+
+    elif line1 == (0,0,1,0) and line2 == (0,0,0,0):  #caso en [7]
+        print("Grupo de 1 = [7]")
+        print("Funcion simplificada, S(P, Q, R) = P'QR")
+
+    elif line1 == (0,0,0,0) and line2 == (0,0,1,0):  #caso en [8]
+        print("Grupo de 1 = [8]")
+        print("Funcion simplificada, S(P, Q, R) = PQR") 
 
 
 

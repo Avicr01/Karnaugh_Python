@@ -267,7 +267,6 @@ def k4v(listing):
 
         print("Funcion simplificada, S(P, Q, R, S) = P' + R' + S + Q")
 
-# Para grupos de 15 unos
 # Para grupos de 14 unos
 # Para grupos de 13 unos
 # Para grupos de 12 unos

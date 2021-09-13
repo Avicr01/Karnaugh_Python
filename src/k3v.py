@@ -1,4 +1,6 @@
-def tabla3():
+from colorama import Fore, Back, Style
+
+def tabla3(listing):
     print(" P  Q  R ")
     print("----------")
     print(" 0  0  0 | [1]")
@@ -9,17 +11,24 @@ def tabla3():
     print(" 1  0  1 | [6]")
     print(" 1  1  0 | [7]")
     print(" 1  1  1 | [8]")
+
     posib =  8
-    listing = [ ]
     var = " "
-    for i in range (0,7):
-      print("variables para [", i , "]");
-      listing.append(int(input(var)))
+    for i in range (0, posib):
+        print(Fore.RESET + "Variables para " + Fore.RED + "[ ", i ," ]" + Fore.RESET);
+        listing.append(int(input(var)))
+
     return listing
  
+ # ES NECESARIO CORREGIR LOS GRUPOS DE 4, 5 y 6!
 
 #Para todos los ceros
-def mapaKarnaugh3 (listing):
+def k3v (listing):
+    line1 = ()
+    line2 = ()
+    line1 = (listing[0],listing[2],listing[6],listing[4])
+    line2 = (listing[1],listing[3],listing[7],listing[5])
+
     print("P \\ QR   00   01   11   10")
     print("         |-------------------")
     print("    0    |  ", listing[0] ,"  |  ",listing[2],"  |  ",listing[6],"  |  ",listing[4]," |")
@@ -32,68 +41,66 @@ def mapaKarnaugh3 (listing):
     print("         ---------------------------------")
     print("    1    |  [2]  |  [4]  |  [8]  |  [6]  |") 
     
-    line1 = ()
-    line2 = ()
-    line1 = (listing[0],listing[2],listing[6],listing[4])
-    line2 = (listing[1],listing[3],listing[7],listing[5])
-
-    if line1 == (0, 0, 0, 0) and line2 == (0, 0, 0, 0): #todos ceros
+    # Todos de 0
+    if line1 == (0, 0, 0, 0) and line2 == (0, 0, 0, 0):
         print("No hay grupos")
-        print("Funcion simplificada, S(P, Q, R) = 0") 
+        print("Funcion simplificada, S( P , Q , R )  = 0")
 
-    elif line1 == (1, 1, 1, 1) and line2 == (1, 1, 1, 1): #todos unos
+    # Todos de 1
+    elif line1 == (1, 1, 1, 1) and line2 == (1, 1, 1, 1):
         print("Grupo de 8 = [1], [2], [3], [4], [5], [6], [7], [8]")
-        print("Funcion simplificada, S( P , Q , R )  = 1") 
+        print("Funcion simplificada, S( P , Q , R )  = 1")
 
-#Grupos con siete unos [ ]
-    elif line1 == (0,1,1,1) and line2 == (1,1,1,1): #cero en [1]
-        print("Grupo de 4 = [7],[8],[5],[6]")
-        print("Grupo de 4 = [3],[7],[4],[8]")
-        print("Grupo de 4 = [2],[4],[8],[6]")
-        print("Funcion simplificada, S(P, Q, R) = R + Q + P")
-
-    elif line1 == (1,1,1,1) and line2 == (0,1,1,1): #cero en [2]
-        print("Grupo de 4 = [1],[3],[7],[5]")
-        print("Grupo de 4 = [7],[8],[5],[6]")
-        print("Grupo de 4 = [3],[4],[7],[8]")
-        print("Funcion simplificada, S(P , Q, R) = P' + Q' + R ")
-
-    elif line1 == (1,0,1,1) and line2 == (1,1,1,1): #cero en [3]
-        print("Grupo de 4 = [1],[2],[5],[6]")
-        print("Grupo de 4 = [2],[4],[8],[6]")
-        print("Grupo de 4 = [7],[8],[5],[6]")
-        print("Funcion simplificada, S(P, Q, R) = R' + Q + P ")
-
-    elif line1 == (1,1,1,1) and line2 == (1,0,1,1): #cero en [4]
-        print("Grupo de 4 = [1],[3],[7],[5]")
-        print("Grupo de 4 = [1],[2],[3],[4]")
-        print("Grupo de 4 = [3],[4],[7],[8]")
-        print("Funcion simplificada, S(P, Q, R) = P' + R' + Q ")
-
-    elif line1 == (1,1,1,0) and line2 == (1,1,1,1):  #cero en [5]
+    #Grupos con siete unos [ ]
+    elif line1 == (1,1,1,0) and line2 == (1,1,1,1):
         print("Grupo de 4 = [1],[2],[3],[4]")
         print("Grupo de 4 = [3],[4],[7],[8]")
         print("Grupo de 4 = [2],[4],[8],[6]")
-        print("Funcion simplificada, S(P, Q, R) = Q' + R + P ")
+        print("Funcion simplificada, f(P, Q, R) = Q' + R + P ")
 
-    elif line1 == (1,1,1,1) and line2 == (1,1,1,0): #cero en [6]
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
         print("Grupo de 4 = [1],[3],[7],[5]")
         print("Grupo de 4 = [1],[2],[3],[4]")
         print("Grupo de 4 = [3],[4],[7],[8]")
-        print("Funcion simplificada, S(P , Q, R) = P' + Q' + R ") 
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ") 
 
-    elif line1 == (1,1,0,1) and line2 == (1,1,1,1): #cero en [7]
+    elif line1 == (1,1,0,1) and line2 == (1,1,1,1):
         print("Grupo de 4 = [1],[2],[3],[4]")
         print("Grupo de 4 = [1],[2],[5],[6]")
         print("Grupo de 4 = [2],[4],[8],[6]")
-        print("Funcion simplificada, S(P, Q, R) = Q' + R' + P ")
+        print("Funcion simplificada, f(P, Q, R) = Q' + R' + P ")
 
-    elif line1 == (1,1,1,1) and line2 == (1,1,0,1): #cero en [8]
+    elif line1 == (1,1,1,1) and line2 == (1,1,0,1):
         print("Grupo de 4 = [1],[2],[3],[4]")
         print("Grupo de 4 = [1],[3],[7],[5]")
         print("Grupo de 4 = [1],[2],[5],[6]")
-        print("Funcion simplificada, S(P, Q, R) = P' + Q' + R'")
+        print("Funcion simplificada, f(P, Q, R) = P' + Q' + R'")
 
+    elif line1 == (1,0,1,1) and line2 == (1,1,1,1):
+        print("Grupo de 4 = [1],[2],[5],[6]")
+        print("Grupo de 4 = [2],[4],[8],[6]")
+        print("Grupo de 4 = [7],[8],[5],[6]")
+        print("Funcion simplificada, f(P, Q, R) = R' + Q + P ")# commit
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
+
+    elif line1 == (1,1,1,1) and line2 == (1,1,1,0):
+        print("Grupo de 4 = [1],[3],[7],[5]")
+        print("Grupo de 4 = [1],[2],[3],[4]")
+        print("Grupo de 4 = [3],[4],[7],[8]")
+        print("Funcion simplificada, f(P , Q, R) = P' + Q' + R ")
+
+#Grupos de 6 de 1 (dos ceros)
 #Grupos de seis unos (dos ceros)
 #GRUPOS DE CEROS
 #Grupo de [1] con el resto [ ]
@@ -1052,7 +1059,280 @@ def mapaKarnaugh3 (listing):
 
 #No hay grupos de [6] [ ] [ ] [ ], [7] [ ] [ ] [ ], [8] [ ] [ ] [ ] porque ya están dentro de las anteriores
 
-#Grupos de un uno (siete ceros)
+# Grupos de 3 de 1 - TODO IMPLEMENTAR EL RESTO DE 3
+#de tres unos-------------------------------------------
+     #juntos
+    elif line1 == (1,1,1,0) and line2 == (0,0,0,0):
+         print("Grupo de 2 = [1],[3]")
+         print("Grupo de 2 = [3],[5]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q' + P'R ")
+    elif line1 == (0,1,1,1) and line2 == (0,0,0,0):
+         print("Grupo de 2 = [3],[7]")
+         print("Grupo de 2 = [7],[5]")
+         print("Funcion simplificada, f(P , Q, R) = P'R + P'Q ")
+    elif line1 == (0,0,0,0) and line2 == (1,1,1,0):
+         print("Grupo de 2 = [2],[4]")
+         print("Grupo de 2 = [4],[8]")
+         print("Funcion simplificada, f(P , Q, R) = PQ' + PR ")
+    elif line1 == (0,0,0,0) and line2 == (0,1,1,1):
+         print("Grupo de 2 = [4],[8]")
+         print("Grupo de 2 = [8],[6]")
+         print("Funcion simplificada, f(P , Q, R) = PR + PQ ")
+    #en forma ed L normal
+    elif line1 == (1,0,0,0) and line2 == (1,1,0,0):
+         print("Grupo de 2 = [1],[2]")
+         print("Grupo de 2 = [2],[4]")
+         print("Funcion simplificada, f(P , Q, R) = Q'R' + PQ' ")
+    elif line1 == (0,1,0,0) and line2 == (0,1,1,0):
+         print("Grupo de 2 = [3],[4]")
+         print("Grupo de 2 = [4],[8]")
+         print("Funcion simplificada, f(P , Q, R) = Q'R + PR ")
+    elif line1 == (0,0,1,0) and line2 == (0,0,1,1):
+         print("Grupo de 2 = [7],[8]")
+         print("Grupo de 2 = [8],[6]")
+         print("Funcion simplificada, f(P , Q, R) = QR + PQ ")
+    elif line1 == (0,0,0,1) and line2 == (0,0,1,1):
+         print("Grupo de 2 = [5],[6]")
+         print("Grupo de 2 = [8],[6]")
+         print("Funcion simplificada, f(P , Q, R) = QR' + PQ ")
+    elif line1 == (0,0,1,0) and line2 == (0,1,1,0):
+         print("Grupo de 2 = [7],[8]")
+         print("Grupo de 2 = [4],[8]")
+         print("Funcion simplificada, f(P , Q, R) = QR + PR ")
+    elif line1 == (0,1,0,0) and line2 == (1,1,0,0):
+         print("Grupo de 2 = [3],[4]")
+         print("Grupo de 2 = [2],[4]")
+         print("Funcion simplificada, f(P , Q, R) = Q'R + PQ' ")
+    #en forma ed L invertida
+    elif line1 == (1,1,0,0) and line2 == (1,0,0,0):
+         print("Grupo de 2 = [1],[3]")
+         print("Grupo de 2 = [1],[2]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q' + Q'R' ")
+    elif line1 == (0,1,1,0) and line2 == (0,1,0,0):
+         print("Grupo de 2 = [3],[4]")
+         print("Grupo de 2 = [3],[7]")
+         print("Funcion simplificada, f(P , Q, R) = P'R + Q'R ")
+    elif line1 == (0,0,1,1) and line2 == (0,0,1,0):
+         print("Grupo de 2 = [7],[5]")
+         print("Grupo de 2 = [7],[8]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q + QR ")
+    elif line1 == (0,0,1,1) and line2 == (0,0,0,1):
+         print("Grupo de 2 = [7],[5]")
+         print("Grupo de 2 = [5],[6]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q + QR' ")
+    elif line1 == (0,1,1,0) and line2 == (0,0,1,0):
+         print("Grupo de 2 = [3],[7]")
+         print("Grupo de 2 = [7],[8]")
+         print("Funcion simplificada, f(P , Q, R) =  P'R + QR ")
+    elif line1 == (1,1,0,0) and line2 == (0,1,0,0):
+         print("Grupo de 2 = [1],[3]")
+         print("Grupo de 2 = [3],[4]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q' + Q'R ")
+ #en forma ed L con espacio---I--
+  #----------------------------II
+    elif line1 == (1,0,0,0) and line2 == (0,1,1,0):
+         print("Grupo de 1 = [1]")
+         print("Grupo de 2 = [4],[8]")
+         print("Funcion simplificada, f(P , Q, R) =  P'Q'R' + PR ")
+    elif line1 == (0,1,0,0) and line2 == (0,0,1,1):
+         print("Grupo de 1 = [3]")
+         print("Grupo de 2 = [8],[6]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R + PQ ")
+    elif line1 == (0,0,0,1) and line2 == (0,1,1,0):
+         print("Grupo de 1 = [5]")
+         print("Grupo de 2 = [4],[8]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR' + PR ")
+    elif line1 == (0,0,1,0) and line2 == (1,1,0,0):
+         print("Grupo de 1 = [7]")
+         print("Grupo de 2 = [2],[4]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR + PQ' ")
+  #en forma ed L con espacio---I-- inversas
+  #---------------------------- II       
+    elif line1 == (1,1,0,0) and line2 == (0,0,1,0):
+         print("Grupo de 1 = [8]")
+         print("Grupo de 2 = [1],[3]")
+         print("Funcion simplificada, f(P , Q, R) =  P'Q' + PQR ")
+    elif line1 == (0,1,1,0) and line2 == (0,0,0,1):
+         print("Grupo de 1 = [6]")
+         print("Grupo de 2 = [3],[7]")
+         print("Funcion simplificada, f(P , Q, R) = P'R + PQR' ")
+    elif line1 == (0,0,1,1) and line2 == (0,1,0,0):
+         print("Grupo de 1 = [4]")
+         print("Grupo de 2 = [7],[5]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q + PQ'R ")
+    elif line1 == (0,1,1,0) and line2 == (1,0,0,0):
+         print("Grupo de 1 = [2]")
+         print("Grupo de 2 = [3],[7]")
+         print("Funcion simplificada, f(P , Q, R) = P'R + PQ'R' ")
+ #en forma ed L con doble espacio---I--
+  #----------------------------     --II 
+
+    elif line1 == (1,1,0,0) and line2 == (0,0,0,1):
+         print("Grupo de 1 = [6]")
+         print("Grupo de 2 = [1],[3]")
+         print("Funcion simplificada, f(P , Q, R) =  P'Q' + PQR' ")
+    elif line1 == (0,0,1,1) and line2 == (1,0,0,0):
+         print("Grupo de 1 = [2]")
+         print("Grupo de 2 = [7],[5]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q + PQ'R' ")
+    elif line1 == (0,0,0,1) and line2 == (1,1,0,0):
+         print("Grupo de 1 = [5]")
+         print("Grupo de 2 = [2],[4]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR' + PQ' ")
+    elif line1 == (1,0,0,0) and line2 == (0,0,1,1):
+         print("Grupo de 1 = [1]")
+         print("Grupo de 2 = [8],[6]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R' + PQ ")
+#especiales....en L
+    elif line1 == (1,0,0,0) and line2 == (1,0,0,1):
+         print("Grupo de 2 = [1],[2]")
+         print("Grupo de 2 = [2],[6]")
+         print("Funcion simplificada, f(P , Q, R) = Q'R' + PR' ")
+    elif line1 == (1,0,0,1) and line2 == (1,0,0,0):
+         print("Grupo de 2 = [1],[2]")
+         print("Grupo de 2 = [1],[5]")
+         print("Funcion simplificada, f(P , Q, R) = P'R' + Q'R' ")
+    elif line1 == (1,0,0,1) and line2 == (0,0,0,1):
+         print("Grupo de 2 = [1],[5]")
+         print("Grupo de 2 = [5],[6]")
+         print("Funcion simplificada, f(P , Q, R) = P'R' + QR' ")
+    elif line1 == (0,0,0,1) and line2 == (1,0,0,1):
+         print("Grupo de 2 = [2],[6]")
+         print("Grupo de 2 = [5],[6]")
+         print("Funcion simplificada, f(P , Q, R) = QR' + PR' ")
+# separados los tres
+    elif line1 == (1,0,1,0) and line2 == (0,1,0,0):
+         print("Grupo de 1 = [1]")
+         print("Grupo de 1 = [3]")
+         print("Grupo de 1 = [4]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R' + P'QR + PQ'R ")
+    elif line1 == (0,1,0,1) and line2 == (0,0,1,0):
+         print("Grupo de 1 = [3]")
+         print("Grupo de 1 = [8]")
+         print("Grupo de 1 = [5]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R + P'QR' + PQR ")
+    elif line1 == (0,1,0,0) and line2 == (1,0,1,0):
+         print("Grupo de 1 = [3]")
+         print("Grupo de 1 = [2]")
+         print("Grupo de 1 = [8]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R + PQ'R' + PQR ")
+    elif line1 == (0,0,1,0) and line2 == (0,1,0,1):
+         print("Grupo de 1 = [7]")
+         print("Grupo de 1 = [4]")
+         print("Grupo de 1 = [6]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR + PQ'R + PQR' ")
+
+# Grupos de 2 de 1
+#------------juntos
+    elif line1 == (1,1,0,0) and line2 == (0,0,0,0):
+         print("Grupo de 2 = [1],[3]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q' ")
+    elif line1 == (0,1,1,0) and line2 == (0,0,0,0):
+         print("Grupo de 2 = [3],[7]")
+         print("Funcion simplificada, f(P , Q, R) =  P'R ")
+    elif line1 == (0,0,1,1) and line2 == (0,0,0,0):
+         print("Grupo de 2 = [7],[5]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q ")
+    elif line1 == (0,0,0,0) and line2 == (1,1,0,0):
+         print("Grupo de 2 = [2],[4]")
+         print("Funcion simplificada, f(P , Q, R) = PQ'")
+    elif line1 == (0,0,0,0) and line2 == (0,1,1,0):
+         print("Grupo de 2 = [4],[8]")
+         print("Funcion simplificada, f(P , Q, R) = PR ")
+    elif line1 == (0,0,0,0) and line2 == (0,0,1,1):
+         print("Grupo de 2 = [8],[6]")
+         print("Funcion simplificada, f(P , Q, R) = PQ ")
+         #---------
+    elif line1 == (1,0,0,0) and line2 == (1,0,0,0):
+         print("Grupo de 2 = [1],[2]")
+         print("Funcion simplificada, f(P , Q, R) = Q'R' ")
+    elif line1 == (0,1,0,0) and line2 == (0,1,0,0):
+         print("Grupo de 2 = [3],[4]")
+         print("Funcion simplificada, f(P , Q, R) = Q'R")
+    elif line1 == (0,0,1,0) and line2 == (0,0,1,0):
+         print("Grupo de 2 = [7],[8]")
+         print("Funcion simplificada, f(P , Q, R) = QR ")
+    elif line1 == (0,0,0,1) and line2 == (0,0,0,1):
+         print("Grupo de 2 = [5],[6]")
+         print("Funcion simplificada, f(P , Q, R) = QR' ")
+         #---------intercalados
+    elif line1 == (1,0,0,0) and line2 == (0,1,0,0):
+         print("Grupo de 1 = [1]")
+         print("Grupo de 1 = [4]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R' + PQ'R ")
+    elif line1 == (0,1,0,0) and line2 == (0,0,1,0):
+         print("Grupo de 1 = [3]")
+         print("Grupo de 1 = [8]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R + PQR ")
+    elif line1 == (0,0,1,0) and line2 == (0,0,0,1):
+         print("Grupo de 1 = [7]")
+         print("Grupo de 1 = [6]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR + PQR' ")
+         #---------
+    elif line1 == (0,1,0,0) and line2 == (1,0,0,0):
+         print("Grupo de 1 = [3]")
+         print("Grupo de 1 = [2]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R + PQ'R' ")
+    elif line1 == (0,0,1,0) and line2 == (0,1,0,0):
+         print("Grupo de 1 = [7]")
+         print("Grupo de 1 = [4]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR + PQ'R ")
+    elif line1 == (0,0,0,1) and line2 == (0,0,1,0):
+         print("Grupo de 1 = [8]")
+         print("Grupo de 1 = [5]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR' + PQR ")
+         #---------
+    elif line1 == (1,0,1,0) and line2 == (0,0,0,0):
+         print("Grupo de 1 = [1]")
+         print("Grupo de 1 = [7]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R' + P'QR ")
+    elif line1 == (0,1,0,1) and line2 == (0,0,0,0):
+         print("Grupo de 1 = [3]")
+         print("Grupo de 1 = [5]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R + P'QR' ")
+    elif line1 == (0,0,0,0) and line2 == (1,0,1,0):
+         print("Grupo de 1 = [2]")
+         print("Grupo de 1 = [4]")
+         print("Funcion simplificada, f(P , Q, R) = PQ'R' + PQR ")        
+    elif line1 == (0,0,0,0) and line2 == (0,1,0,1):
+         print("Grupo de 1 = [8]")
+         print("Grupo de 1 = [6]")
+         print("Funcion simplificada, f(P , Q, R) = PQ'R + PQR' ")
+     #---------intercal de doble espacio
+    elif line1 == (1,0,0,0) and line2 == (0,0,1,0):
+         print("Grupo de 1 = [1]")
+         print("Grupo de 1 = [8]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R' + PQR ")
+    elif line1 == (0,1,0,0) and line2 == (0,0,0,1):
+         print("Grupo de 1 = [3]")
+         print("Grupo de 1 = [6]")
+         print("Funcion simplificada, f(P , Q, R) = P'Q'R + PQR' ")
+    elif line1 == (0,0,1,0) and line2 == (1,0,0,0):
+         print("Grupo de 1 = [7]")
+         print("Grupo de 1 = [2]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR + PQ'R' ")
+    elif line1 == (0,0,0,1) and line2 == (0,1,0,0):
+         print("Grupo de 1 = [5]")
+         print("Grupo de 1 = [4]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR' + PQ'R ")
+     #--------Esquinas  
+    elif line1 == (0,0,0,1) and line2 == (1,0,0,0):
+         print("Grupo de 1 = [5]")
+         print("Grupo de 1 = [2]")
+         print("Funcion simplificada, f(P , Q, R) = P'QR' + PQ'R' ")
+    elif line1 == (1,0,0,0) and line2 == (0,0,0,1):
+         print("Grupo de 1 = [1]")
+         print("Grupo de 1 = [6]")
+         print("Funcion simplificada, f(P , Q, R) =P'Q'R' + PQR' ")
+     #--------Especiales
+    elif line1 == (1,0,0,1) and line2 == (0,0,0,0):
+         print("Grupo de 2 = [1],[5]")
+         print("Funcion simplificada, f(P , Q, R) = P'R' ")   
+    elif line1 == (0,0,0,0) and line2 == (1,0,0,1):
+         print("Grupo de 2 = [2],[6]")
+         print("Funcion simplificada, f(P , Q, R) = PR' ")
+
+# Grupos de 1 de 1
     elif line1 == (1,0,0,0) and line2 == (0,0,0,0):  #caso en [1]
         print("Grupo de 1 = [1]")
         print("Funcion simplificada, S(P, Q, R) = P'Q'R'")
@@ -1083,7 +1363,7 @@ def mapaKarnaugh3 (listing):
 
     elif line1 == (0,0,0,0) and line2 == (0,0,1,0):  #caso en [8]
         print("Grupo de 1 = [8]")
-        print("Funcion simplificada, S(P, Q, R) = PQR")
+        print("Funcion simplificada, S(P, Q, R) = PQR") 
 
 
 

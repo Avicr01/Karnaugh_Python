@@ -14,9 +14,13 @@ def tabla3(listing):
 
     posib =  8
     var = " "
+
     for i in range (0, posib):
-        print(Fore.RESET + "Variables para " + Fore.RED + "[ ", i ," ]" + Fore.RESET);
-        listing.append(int(input(var)))
+        while var != 0 and var != 1:
+            print(Fore.RESET + "Variables para " + Fore.RED + "[ ", i ," ]" + Fore.RESET);
+            var = int(input())
+        listing.append(var)
+        var = " "
 
     return listing
  

@@ -9,7 +9,9 @@ from colorama import Fore, Back, Style
 # Works for Unix 
 #clear = lambda: os.system('clear')
 # Works for Windows 
-clear = lambda: os.system("cls")
+def clear():
+    # Para Windows es "nt"
+    return os.system("cls" if os.name == "nt" else "clear")
 
 def Eleccion_variables():
     print(Fore.YELLOW + "SECCION DE NUMERO DE VARIABLES")

@@ -1,67 +1,19 @@
-from colorama import Fore, Back, Style
-
-def k4v(listing):
-    posib = 16
-    var = " "
-    line1 = ()
-    line2 = ()
-    line3 = ()
-    line4 = ()
-
+def k4v9(listing):
     line1 = (listing[0], listing[1], listing[3], listing[2])
     line2 = (listing[4], listing[5], listing[7], listing[6])
     line3 = (listing[12], listing[13], listing[15], listing[14])
     line4 = (listing[8], listing[9], listing[11], listing[10])
 
-    print("\n")
-
-    print(Fore.LIGHTYELLOW_EX + "  PQ \ RS      00      01      11      10")
-    print("          |-------------------------------")
-    print("    00    |  ", listing[0] ,"  |  ",listing[1],"  |  ",listing[3],"  |  ",listing[2]," |")
-    print("          |-------------------------------")
-    print("    01    |  ", listing[4] ,"  |  ",listing[5],"  |  ",listing[7],"  |  ",listing[6]," |")
-    print("          |-------------------------------")
-    print("    11    |  ", listing[12] ,"  |  ",listing[13],"  |  ",listing[15],"  |  ",listing[14]," |")
-    print("          |-------------------------------")
-    print("    10    |  ", listing[8] ,"  |  ",listing[9],"  |  ",listing[11],"  |  ",listing[10]," |")
-
-    print("\n")
-
-    print(Fore.LIGHTBLUE_EX + "  PQ \ RS      00      01      11      10")
-    print("          |---------------------------------")
-    print("    00    |  [1]  |  [2]  |  [3]   |  [4]  |")
-    print("          |---------------------------------")
-    print("    01    |  [5]  |  [6]  |  [7]   |  [8]  |")
-    print("          |---------------------------------")
-    print("    11    |  [9]  |  [10] |  [11]  |  [12] |")
-    print("          |---------------------------------")
-    print("    10    |  [13] |  [14] |  [15]  |  [16] |")
-
-    print("\n" + Fore.WHITE)
-
-# ----------------------------------------------------------------------
-# ----------------------------------------------------------------------
-# Para todos ceros 
-# ----------------------------------------------------------------------
-# ----------------------------------------------------------------------
-    if          line1 == (0, 0, 0, 0) \
-            and line2 == (0, 0, 0, 0) \
-            and line3 == (0, 0, 0, 0) \
-            and line4 == (0, 0, 0, 0):
-        print("No hay grupos")
-        print("Funcion simplificada, f(P, Q, R, S) = 0")
-
-    
     #1	2	3	4   5   6  x
     #7	<=	x	<=	16		
 
-    elif        line1 == (0, 0, 0, 0) \
+    if          line1 == (0, 0, 0, 0) \
             and line2 == (0, 0, 0, 1) \
             and line3 == (1, 1, 1, 1) \
             and line4 == (1, 1, 1, 1):
-        print("Grupo de 1 = { [14] }")
-        print("Grupo de 2 = { [1], [5] }")
-        print("Funcion simplificada, f(P, Q, R, S) = ")
+        print("Grupo de 8 = { 9 10 11 12 13 14 15 16 }")
+        print("Grupo de 2 = { 8 12 }")
+        print("Funcion simplificada, f(P, Q, R, S) =  A + BCD'")
 
     elif        line1 == (0, 0, 0, 0) \
             and line2 == (0, 0, 1, 0) \
@@ -110499,17 +110451,11 @@ def k4v(listing):
         print("Grupo de 2 = { [1], [5] }")
         print("Funcion simplificada, f(P, Q, R, S) = ")
 
-
     ##@ f = 10
-
     #@ e = 11
-
     #### d = 12
-
     ### c = 13
-
     ## b = 14
-    
     # a = 15
 
     elif        line1 == (1, 1, 1, 1) \
@@ -110519,6 +110465,3 @@ def k4v(listing):
         print("Grupo de 1 = { [14] }")
         print("Grupo de 2 = { [1], [5] }")
         print("Funcion simplificada, f(P, Q, R, S) = ")
-
-
-    print("\n\n")

@@ -9,36 +9,13 @@ import json
 
 interface = Tk()
 
-
-def binary_string_to_bytearray(binary_string):
-    """
-    Transforms a binary string "01001100..." into a bytearray
-    to be written into a binary file.
-    """
-    # Add 0 until the binary string has a length divisible by 8
-    counter = 0
-    while not len(binary_string) % 8 == 0:
-        binary_string += "0"
-        counter += 1
-
-    # Divide the binary string into chunks of 8. For each chunk, cast it into
-    # an integer and then convert the list of integers into a bytearray.
-    return bytearray(int(binary_string[x:x+8], 2) for x in range(0, len(binary_string), 8))
-
-
-
-
-#----Variables Strings Respectivos  ---------------
-
-
-
-#----Variables Ints Respectivos  ---------------
-
 #----Instancias de imagenes ---------------
 
+PicTable2 = ImageTk.PhotoImage(file="interface/images/2v.png")
 PicTable3 = ImageTk.PhotoImage(file="interface/images/3v.png")
+PicTable4 = ImageTk.PhotoImage(file="interface/images/4v.png")
 
-#------------Funcion que abre una nueva ventana -------------
+#------------Funcion evaluar mapas de Karnaugh-------------
 
 def calcular(arr, ventana, Hventana, var):
     label = ""
@@ -49,7 +26,7 @@ def calcular(arr, ventana, Hventana, var):
 
     # Funcion de Mapas de Karnaugh
     if var == 2:
-        label = kmaps2(listing, label)
+        label= kmaps2(listing, label)
     elif var == 3:
         label = kmaps3(listing, label)
     elif var == 4:
@@ -59,21 +36,10 @@ def calcular(arr, ventana, Hventana, var):
     LabelSimple=Label(ventana,text=label)
     LabelSimple.place(x=10,y=Hventana-100)
 
+
+#------------Funcion que abre una nueva ventana -------------
+
 def openK3Window():
-    def show():
-        label = ""
-        listing = []
-        for i in range(len(arr)):
-            listing.append(arr[i].get())
-        print("\n")
-
-        # Funcion de Mapas de Karnaugh
-        label = kmaps3(listing, label)
-        print(label)
-        LabelSimple=Label(K3Window,text=label)
-        LabelSimple.place(x=10,y=370)
-
-
     K3Window = Toplevel(interface) 
 
     Hventana = 480
@@ -114,12 +80,88 @@ def openK3Window():
 
 
 def openK2Window():
-    K3Window = Toplevel(interface)
+    K2Window = Toplevel(interface) 
 
+    Hventana = 400
+    K2Window.geometry("400x400")
+    K2Window.resizable(0, 0)
+    K2Window.title("Mapas de Karnaugh con 2 Variables")
+    K2Window.iconbitmap("interface/map.ico")
+
+    LabelInstruc = Label(K2Window, text="Marque en los checkbox de la tabla de verdad las variables que sean unos. " + \
+                                        "Deje en blanco las variables que sean cero. " + \
+                                        "Después, presione calcular y revise la consola."\
+                        , wraplength=320, anchor = "w").place(x=20, y=20)
+    
+    # Poner imagen
+    table_image = Label(K2Window, image=PicTable2).place(x=30, y=90)
+
+    #---------------- Boton Checkbox ----------------------
+
+    arr = []
+    for i in range(4):
+        option = IntVar()
+        arr.append(option)
+
+    # Spacing vertical de 27
+    Checkbutton(K2Window, text="¿Es 1?", variable=arr[0], onvalue=1, offvalue=0).place(x=145, y=135)
+    Checkbutton(K2Window, text="¿Es 1?", variable=arr[1], onvalue=1, offvalue=0).place(x=145, y=135+35*1)
+    Checkbutton(K2Window, text="¿Es 1?", variable=arr[2], onvalue=1, offvalue=0).place(x=145, y=135+35*2)
+    Checkbutton(K2Window, text="¿Es 1?", variable=arr[3], onvalue=1, offvalue=0).place(x=145, y=135+35*3)
+
+    #---------------- Boton Calcular ----------------------
+
+    buttonCalc = Button(K2Window,text="Calcular", command=lambda: calcular(arr, K2Window, Hventana, 2)).place(x=240, y=190)
 
 
 def openK4Window():
-    K3Window = Toplevel(interface)
+    K4Window = Toplevel(interface)
+
+    Hventana = 680 
+    K4Window.geometry("470x680")
+    K4Window.resizable(0, 0)
+    K4Window.title("Mapas de Karnaugh con 4 Variables")
+    K4Window.iconbitmap("interface/map.ico")
+
+    LabelInstruc = Label(K4Window, text="Marque en los checkbox de la tabla de verdad las variables que sean unos. " + \
+                                        "Deje en blanco las variables que sean cero. " + \
+                                        "Después, presione calcular y revise la consola."\
+                        , wraplength=440, anchor = "w").place(x=20, y=20)
+    
+    # Poner imagen
+    table_image = Label(K4Window, image=PicTable4).place(x=30, y=90)
+
+    #---------------- Boton Checkbox ----------------------
+
+    arr = []
+    for i in range(16):
+        option = IntVar()
+        arr.append(option)
+
+    sep = 29
+    # Spacing vertical de 27
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[0], onvalue=1, offvalue=0).place(x=175, y=122)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[1], onvalue=1, offvalue=0).place(x=175, y=122+sep*1)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[2], onvalue=1, offvalue=0).place(x=175, y=122+sep*2)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[3], onvalue=1, offvalue=0).place(x=175, y=122+sep*3)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[4], onvalue=1, offvalue=0).place(x=175, y=122+sep*4)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[5], onvalue=1, offvalue=0).place(x=175, y=122+sep*5)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[6], onvalue=1, offvalue=0).place(x=175, y=122+sep*6)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[7], onvalue=1, offvalue=0).place(x=175, y=122+sep*7)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[8], onvalue=1, offvalue=0).place(x=175, y=122+sep*8)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[9], onvalue=1, offvalue=0).place(x=175, y=122+sep*9)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[10], onvalue=1, offvalue=0).place(x=175, y=122+sep*10)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[11], onvalue=1, offvalue=0).place(x=175, y=122+sep*11)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[12], onvalue=1, offvalue=0).place(x=175, y=122+sep*12)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[13], onvalue=1, offvalue=0).place(x=175, y=122+sep*13)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[14], onvalue=1, offvalue=0).place(x=175, y=122+sep*14)
+    Checkbutton(K4Window, text="¿Es 1?", variable=arr[15], onvalue=1, offvalue=0).place(x=175, y=122+sep*15)
+
+
+    #---------------- Boton Calcular ----------------------
+
+    buttonCalc = Button(K4Window,text="Calcular", command=lambda: calcular(arr, K4Window, Hventana, 4)).place(x=300, y=190)
+
 
 
 

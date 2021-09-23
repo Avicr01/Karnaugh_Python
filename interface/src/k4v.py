@@ -35,22 +35,22 @@ def tabla4(listing):
 
     print(Fore.RED + " P  Q  R  S")
     print("------------|")
-    print(Fore.RESET +" 0  0  0  1 " + Fore.RED + "| [1]")
-    print(Fore.RESET +" 0  0  0  0 " + Fore.RED + "| [2]")
-    print(Fore.RESET +" 0  0  1  1 " + Fore.RED + "| [3]")
-    print(Fore.RESET +" 0  0  1  0 " + Fore.RED + "| [4]")
-    print(Fore.RESET +" 0  1  0  1 " + Fore.RED + "| [5]")
-    print(Fore.RESET +" 0  1  0  0 " + Fore.RED + "| [6]")
-    print(Fore.RESET +" 0  1  1  1 " + Fore.RED + "| [7]")
-    print(Fore.RESET +" 1  1  1  0 " + Fore.RED + "| [8]")
-    print(Fore.RESET +" 1  0  0  1 " + Fore.RED + "| [9]")
-    print(Fore.RESET +" 1  0  0  0 " + Fore.RED + "| [10]")
-    print(Fore.RESET +" 1  0  1  1 " + Fore.RED + "| [11]")
-    print(Fore.RESET +" 1  0  1  0 " + Fore.RED + "| [12]")
-    print(Fore.RESET +" 1  1  0  1 " + Fore.RED + "| [13]")
-    print(Fore.RESET +" 1  1  0  0 " + Fore.RED + "| [14]")
-    print(Fore.RESET +" 1  1  1  1 " + Fore.RED + "| [15]")
-    print(Fore.RESET +" 1  1  1  0 " + Fore.RED + "| [16]")
+    print(Fore.RESET +" 0  0  0  0 " + Fore.RED + "| [1]")
+    print(Fore.RESET +" 0  0  0  1 " + Fore.RED + "| [2]")
+    print(Fore.RESET +" 0  0  1  0 " + Fore.RED + "| [3]")
+    print(Fore.RESET +" 0  0  1  1 " + Fore.RED + "| [4]")
+    print(Fore.RESET +" 0  1  0  0 " + Fore.RED + "| [5]")
+    print(Fore.RESET +" 0  1  0  1 " + Fore.RED + "| [6]")
+    print(Fore.RESET +" 0  1  1  0 " + Fore.RED + "| [7]")
+    print(Fore.RESET +" 0  1  1  1 " + Fore.RED + "| [8]")
+    print(Fore.RESET +" 1  0  0  0 " + Fore.RED + "| [9]")
+    print(Fore.RESET +" 1  0  0  1 " + Fore.RED + "| [10]")
+    print(Fore.RESET +" 1  0  1  0 " + Fore.RED + "| [11]")
+    print(Fore.RESET +" 1  0  1  1 " + Fore.RED + "| [12]")
+    print(Fore.RESET +" 1  1  0  0 " + Fore.RED + "| [13]")
+    print(Fore.RESET +" 1  1  0  1 " + Fore.RED + "| [14]")
+    print(Fore.RESET +" 1  1  1  0 " + Fore.RED + "| [15]")
+    print(Fore.RESET +" 1  1  1  1 " + Fore.RED + "| [16]")
 
     print("\n")
     posib = 16 
@@ -65,7 +65,7 @@ def tabla4(listing):
 
     return listing
 
-def kmaps4 (listing):
+def kmaps4 (listing, label):
     count = sum(map(lambda x: x == 1, listing))
     posib = 16
     var = " "
@@ -81,6 +81,7 @@ def kmaps4 (listing):
 
     print("\n")
 
+    print(Fore.YELLOW + "\t\tMAPA DE KARNAUGH\n")
     print(Fore.LIGHTYELLOW_EX + "  PQ \ RS      00      01      11      10")
     print("          |-------------------------------")
     print("    00    |  ", listing[0] ,"  |  ",listing[1],"  |  ",listing[3],"  |  ",listing[2]," |")
@@ -93,7 +94,8 @@ def kmaps4 (listing):
 
     print("\n")
 
-    print(Fore.LIGHTBLUE_EX + "  PQ \ RS      00      01      11      10")
+    print(Fore.CYAN + "\t\tTABLA DE REFERENCIA\n")
+    print(Fore.LIGHTCYAN_EX + "  PQ \ RS      00      01      11      10")
     print("          |---------------------------------")
     print("    00    |  [1]  |  [2]  |  [3]   |  [4]  |")
     print("          |---------------------------------")
@@ -215,4 +217,4 @@ def kmaps4 (listing):
     elif count == 1:
         g1.k4v1(listing)
 
-print("\n")
+    return label

@@ -21,12 +21,9 @@ def tabla2(listing):
     return listing
 
 
-def kmaps2(listing):
+def kmaps2(listing, label):
     posib = 4
     var = " "
-    line1 = ()
-    line2 = ()
-
     line1 = (listing[0], listing[1])
     line2 = (listing[2], listing[3])
 
@@ -50,68 +47,68 @@ def kmaps2(listing):
 
 # Para todos ceros 
     if line1 == (0, 0) and line2 == (0, 0):
-        print("No hay grupos")
-        print("Funcion simplificada, S(P, Q) = 0")
+        label+="No hay grupos\n"
+        label+="Funcion simplificada, S(P, Q) = 0\n"
 
 # Para todos unos
     elif line1 == (1, 1) and line2 == (1, 1):
-        print("Grupo de 4 = { [1], [2], [3], [4] }")
-        print("Funcion simplificada, S(P, Q) = 1")
+        label+="Grupo de 4 = { [1], [2], [3], [4] }\n"
+        label+="Funcion simplificada, S(P, Q) = 1\n"
 
 # Para tres unos
     elif line1 == (0, 1) and line2 == (1, 1):
-        print("Grupo de 2 = { [3], [4] }")
-        print("Grupo de 2 = { [2], [4] }")
-        print("Funcion simplificada, S(P, Q) = Q + P")
+        label+="Grupo de 2 = { [3], [4] }\n"
+        label+="Grupo de 2 = { [2], [4] }\n"
+        label+="Funcion simplificada, S(P, Q) = Q + P\n"
     elif line1 == (1, 0) and line2 == (1, 1):
-        print("Grupo de 2 = { [1], [3] }")
-        print("Grupo de 2 = { [3], [4] }")
-        print("Funcion simplificada, S(P, Q) = Q' + P")
+        label+="Grupo de 2 = { [1], [3] }\n"
+        label+="Grupo de 2 = { [3], [4] }\n"
+        label+="Funcion simplificada, S(P, Q) = Q' + P\n"
     elif line1 == (1, 1) and line2 == (0, 1):
-        print("Grupo de 2 = { [1], [2] }")
-        print("Grupo de 2 = { [2], [4] }")
-        print("Funcion simplificada, S(P, Q) = P' + Q")
+        label+="Grupo de 2 = { [1], [2] }\n"
+        label+="Grupo de 2 = { [2], [4] }\n"
+        label+="Funcion simplificada, S(P, Q) = P' + Q\n"
     elif line1 == (1, 1) and line2 == (1, 0):
-        print("Grupo de 2 = { [1], [2] }")
-        print("Grupo de 2 = { [1], [3] }")
-        print("Funcion simplificada, S(P, Q) = P' + Q'")
+        label+="Grupo de 2 = { [1], [2] }\n"
+        label+="Grupo de 2 = { [1], [3] }\n"
+        label+="Funcion simplificada, S(P, Q) = P' + Q'\n"
 
 # Para dos unos - adj 
     elif line1 == (1, 1) and line2 == (0, 0):
-        print("Grupo de 2 = { [1], [2] }")
-        print("Funcion simplificada, S(P, Q) = P'")
+        label+="Grupo de 2 = { [1], [2] }\n"
+        label+="Funcion simplificada, S(P, Q) = P'\n"
     elif line1 == (0, 0) and line2 == (1, 1):
-        print("Grupo de 2 = { [3], [4] }")
-        print("Funcion simplificada, S(P, Q) = P")
+        label+="Grupo de 2 = { [3], [4] }\n"
+        label+="Funcion simplificada, S(P, Q) = P\n"
     elif line1 == (1, 0) and line2 == (1, 0):
-        print("Grupo de 2 = { [1], [3] }")
-        print("Funcion simplificada, S(P, Q) = Q'")
+        label+="Grupo de 2 = { [1], [3] }\n"
+        label+="Funcion simplificada, S(P, Q) = Q'\n"
     elif line1 == (0, 1) and line2 == (0, 1):
-        print("Grupo de 2 = { [2], [4] }")
-        print("Funcion simplificada, S(P, Q) = Q")
+        label+="Grupo de 2 = { [2], [4] }\n"
+        label+="Funcion simplificada, S(P, Q) = Q\n"
 
 # Para dos unos - sep 
     elif line1 == (1, 0) and line2 == (0, 1):
-        print("Grupo de 1 = { [1] }")
-        print("Grupo de 1 = { [4] }")
-        print("Funcion simplificada, S(P, Q) = P'Q' + PQ")
-    elif line1 == (0, 1) and line2 == (0, 1):
-        print("Grupo de 1 = { [3] }")
-        print("Grupo de 1 = { [2] }")
-        print("Funcion simplificada, S(P, Q) = P'Q + PQ'")
+        label+="Grupo de 1 = { [1] }\n"
+        label+="Grupo de 1 = { [4] }\n"
+        label+="Funcion simplificada, S(P, Q) = P'Q' + PQ\n"
+    elif line1 == (0, 1) and line2 == (1, 0):
+        label+="Grupo de 1 = { [2] }\n"
+        label+="Grupo de 1 = { [3] }\n"
+        label+="Funcion simplificada, S(P, Q) = P'Q + PQ'\n"
 
 # Para unos
     elif line1 == (1, 0) and line2 == (0, 0):
-        print("Grupo de 1 = { [1] }")
-        print("Funcion simplificada, S(P, Q) = P'Q'")
+        label+="Grupo de 1 = { [1] }\n"
+        label+="Funcion simplificada, S(P, Q) = P'Q'\n"
     elif line1 == (0, 1) and line2 == (0, 0):
-        print("Grupo de 1 = { [2] }")
-        print("Funcion simplificada, S(P, Q) = P'Q")
+        label+="Grupo de 1 = { [2] }\n"
+        label+="Funcion simplificada, S(P, Q) = P'Q\n"
     elif line1 == (0, 0) and line2 == (1, 0):
-        print("Grupo de 1 = { [3] }")
-        print("Funcion simplificada, S(P, Q) = P'Q")
+        label+="Grupo de 1 = { [3] }\n"
+        label+="Funcion simplificada, S(P, Q) = P'Q\n"
     elif line1 == (0, 0) and line2 == (0, 1):
-        print("Grupo de 1 = { [4] }")
-        print("Funcion simplificada, S(P, Q) = PQ")
+        label+="Grupo de 1 = { [4] }\n"
+        label+="Funcion simplificada, S(P, Q) = PQ\n"
 
-    print("\n")
+    return label

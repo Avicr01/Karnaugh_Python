@@ -112,14 +112,14 @@ def calcular(arr, ventana, Hventana, var):
         line1 = listing[0] + listing[1] + listing[3] + listing[2]
         line2 = listing[4] + listing[5] + listing[7] + listing[6]
 
-        arr1 = {listing[0] , listing[1] , listing[3] , listing[2]}
-        arr2 = {listing[4] , listing[5] , listing[7] , listing[6]}
+        arr1 = (listing[0] , listing[1] , listing[3] , listing[2])
+        arr2 = (listing[4] , listing[5] , listing[7] , listing[6])
 
         label_arr = canvas.create_text((205, 110), text=fila1+fila2, font="Calibri 18 bold")
         
         # Poner la funcion simplificada 
         canvas_label.place(x = 270, y = 280)
-        label_fun = canvas_label.create_text((120, 30), text=label)
+        label_fun = canvas_label.create_text((150, 60), text=label)
         
         # Crear grupos 
         count = sum(map(lambda x: x == 1, listing))
@@ -234,8 +234,21 @@ def calcular(arr, ventana, Hventana, var):
                 else:
                     canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
                     canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline='blue')
+            else:
+                for i in range (0,3):
+                    if arr1[i] == 1 and arr1[i+1] == 1 and arr2[i] == 1:
+                        canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(0), outline='red')
+                        canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline='blue')
+                
+                if arr1[3] == 1 and arr1[0] == 1 and arr2[3] == 1:
+                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3),y2+ver*(1), outline='blue')
+                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0),y2+ver*(0), outline='red')
+                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3),y2+ver*(0), outline='red') 
 
-
+                for i in range (0,3):
+                    if arr1[i] == 1 and arr1[i+1] == 1 and arr2[i+1] == 1:
+                        canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(0), outline='red')
+                        canvas.create_rectangle((i*hor)+x1+hor*(1), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(1), outline='blue')
 
 #            else:
 #                # Rangos de 0 a 3
@@ -342,8 +355,76 @@ def calcular(arr, ventana, Hventana, var):
 #                                if x == 7:
 #                                    canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline='red')
 
+        elif count == 7:
+            for x in range(0, len(listing)):
+                if listing[x] == 0:
+                    if x == 0:
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='green')
+                    elif x == 1:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='green')
+                    elif x == 2:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='blue')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='green')
+                    elif x == 3:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='blue')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='green')
+                    elif x == 4:
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='green')
+                    elif x == 5:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='green')
+                    elif x == 6:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='blue')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='green')
+                    elif x == 7:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='blue')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='green')
+
     elif var == 4:
         label = kmaps4(listing, label)
+
+        canvas.place(x = 280, y = 92)
+
+        canvas_label = tkinter.Canvas(ventana, height=200, width=200)
+        canvas_label.place(x = 300, y = 500)
+
+        # Dibujar el mapa
+        karnaugh_img = canvas.create_image((0,0), image=PicK4, anchor=tkinter.N + tkinter.W)
+        fila1 = "{}                {}                 {}              {}".format(listing[0], listing[1], listing[3], listing[2])
+        fila2 = "\n\n{}                 {}                {}              {}".format(listing[4], listing[5], listing[7], listing[6])
+        fila3 = "\n\n\n{}                 {}                {}              {}".format(listing[12], listing[13], listing[15], listing[14])
+        fila4 = "\n\n{}                 {}                {}              {}".format(listing[8], listing[9], listing[11], listing[10])
+        
+
+        label_arr = canvas.create_text((250, 205), text=fila1+fila2+fila3+fila4, font="Calibri 18 bold")
+        
+        # Poner la funcion simplificada 
+        label_fun = canvas_label.create_text((100, 100), text=label)
+        
+        # Crear grupos 
+        count = sum(map(lambda x: x == 1, listing))
+        
+        x1 = 80
+        x2 = 120 
+        y1 = 60 
+        y2 = 100
+        hor = 72
+        ver = 60
 
     print(label)
 
@@ -429,7 +510,7 @@ def openK4Window():
     K4Window = Toplevel(interface)
 
     Hventana = 680 
-    K4Window.geometry("470x680")
+    K4Window.geometry("740x680")
     K4Window.resizable(0, 0)
     K4Window.title("Mapas de Karnaugh con 4 Variables")
     K4Window.iconbitmap("interface/map.ico")
@@ -471,7 +552,7 @@ def openK4Window():
 
     #---------------- Boton Calcular ----------------------
 
-    buttonCalc = Button(K4Window,text="Calcular", command=lambda: calcular(arr, K4Window, Hventana, 4)).place(x=300, y=190)
+    buttonCalc = Button(K4Window,text="Calcular", command=lambda: calcular(arr, K4Window, Hventana, 4)).place(x=80, y=62)
 
 
 

@@ -36,5 +36,3 @@ bg_label = canvas.create_image((0,0), image=bg_img, anchor=tk.N + tk.W)
 label_arr = canvas.create_text((200, 120), text=fila1+"\n"+fila2, font="Calibri 20 bold")
 
 root.mainloop()
-
-root.mainloop()

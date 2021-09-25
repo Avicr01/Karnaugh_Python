@@ -64,14 +64,14 @@ def minimization(k):
 
     if (prod == 1):
 
-        print("F(w,x,y,z) = 1\n")
-        la.set("F = 1")
+        print("F(P,Q,R,S) = 1\n")
+        la = "F = 1"
         return
 
     if (zero_cnt == 16):
 
-        print("F(w,x,y,z) = 0\n")
-        la.set("F = 0")
+        print("F(P,Q,R,S) = 0\n")
+        la = "F = 0"
         return
 
     for i in range(0, 16):
@@ -220,9 +220,11 @@ def minimization(k):
 
     if (k_max == 1):
 
-        print("The is no minimization on this function.")
-        la.set("Not possible minimization")
+        print("No hay minimizacion para esta funcion.")
+        la = "No es posible minimizarla"
         return
+    
+
     #                                                        minimization code goes after here.
     map_copy = k
     solution = ""
@@ -239,7 +241,7 @@ def minimization(k):
                     duo.append(t)
                     duo.append(t + driver_2[t][j])
                     duo.sort()
-                    print("Combining the following squares: ", duo)
+                    print("Combinando los siguientes cuadrados: ", duo)
                     solution += solver(duo)
                     zero[t] = 1
                     zero[t + driver_2[t][j]] = 1
@@ -260,7 +262,7 @@ def minimization(k):
                     duo.append(t)
                     duo.append(t + driver_2[t][j])
                     duo.sort()
-                    print("Combining the following squares: ", duo)
+                    print("Combinando los siguientes cuadrados: ", duo)
                     solution += solver(duo)
                     zero[t] = 1
                     zero[t + driver_2[t][j]] = 1
@@ -286,8 +288,8 @@ def minimization(k):
                     quatro.append(driver_4[t][j][0] + t)
                     quatro.append(driver_4[t][j][1] + t)
                     quatro.append(driver_4[t][j][2] + t)
-                    print("Combining the following squares : ", quatro)
-                    print("already combined: ",already_combined)
+                    print("se combinan los siguientes cuadrados: ", quatro)
+                    print("Ya esta combinado: ",already_combined)
                     quatro.sort()
                     solution += solver(quatro)
                     zero[t] = 1
@@ -320,7 +322,7 @@ def minimization(k):
                         quatro.append(driver_4[t][j][0] + t)
                         quatro.append(driver_4[t][j][1] + t)
                         quatro.append(driver_4[t][j][2] + t)
-                        print("Combining the following squares : ", quatro)
+                        print("se combinan los siguientes cuadrados: ", quatro)
                         quatro.sort()
                         solution += solver(quatro)
                         zero[t] = 1
@@ -332,14 +334,14 @@ def minimization(k):
                         already_combined[quatro[2]] = 0
                         already_combined[quatro[3]] = 0
                         free_aces -= 4
-                        print("already combined: ",already_combined)
+                        print("Ya esta combinado: ",already_combined)
                         break
 
 
 
     while (max(already_combined) >= 1):
 
-        print("\nMINIMIZATION RUNS\n")
+        print("\nLA MINIMIZACION CORRE\n")
         print(combo)
         for i in range(0, 16):
              if (   (combo[i] == 2 )   and (timer > 2)   ):
@@ -499,8 +501,8 @@ def minimization(k):
 
                     pass
 
-    print("\nMinimization Results:\n\nF(A,B,C,D)=", solution[:-2])
-    la.set(solution[:-2])
+    print("\nMinimos resultados:\n\nF(P,Q,R,S)=", solution[:-2])
+    la = solution[:-2]
 
 def solver(arg):
 
@@ -509,172 +511,172 @@ def solver(arg):
     if (len(arg) == 1):
 
         if(arg == [0]):
-            sol += " A'B'C'D' "
+            sol += " P'Q'R'S' "
         elif (arg == [1]):
-            sol += " A'B'C'D "
+            sol += " P'Q'R'S "
         elif (arg == [2]):
-            sol += " A'B'CD' "
+            sol += " P'Q'RS' "
         elif (arg == [3]):
-            sol += " A'B'CD "
+            sol += " P'Q'RS "
         elif (arg == [4]):
-            sol += " A'BC'D' "
+            sol += " P'QR'S' "
         elif (arg == [5]):
-            sol += " A'BC'D "
+            sol += " P'QR'S "
         elif (arg == [6]):
-            sol += " A'BCD' "
+            sol += " P'QRS' "
         elif (arg == [7]):
-            sol += " A'BCD "
+            sol += " P'QRS "
         elif (arg == [8]):
-            sol += " AB'C'D' "
+            sol += " PQ'R'S' "
         elif (arg == [9]):
-            sol += " AB'C'D "
+            sol += " PQ'R'S "
         elif (arg == [10]):
-            sol += " AB'CD' "
+            sol += " PQ'RS' "
         elif (arg == [11]):
-            sol += " AB'CD "
+            sol += " PQ'RS "
         elif (arg == [12]):
-            sol += " ABC'D' "
+            sol += " PQR'S' "
         elif (arg == [13]):
-            sol += " ABC'D "
+            sol += " PQR'S "
         elif (arg == [14]):
-            sol += " ABCD' "
+            sol += " PQRS' "
         elif (arg == [15]):
-            sol += " ABCD "
+            sol += " PQRS "
 
     if (len(arg) == 2 ):
 
         if(arg == [0,1]):
-            sol += " A'B'C' "
+            sol += " P'Q'R' "
         elif(arg == [0,2]):
-            sol += " A'B'D' "
+            sol += " P'Q'S' "
         elif arg == [0, 4]:
-            sol += " A'C'D' "
+            sol += " P'R'S' "
         elif(arg == [0,8]):
-            sol += " B'C'D' "
+            sol += " Q'R'S' "
         elif(arg == [1,3]):
-            sol += " A'B'D "
+            sol += " P'Q'S "
         elif(arg == [1,5]):
-            sol += " A'C'D "
+            sol += " P'R'S "
         elif(arg == [1,9]):
-            sol += " B'C'D "
+            sol += " Q'R'S "
         elif(arg == [2,3]):
-            sol += " A'B'C "
+            sol += " P'Q'R "
         elif(arg == [3,7]):
-            sol += " A'CD "
+            sol += " P'RS "
         elif(arg == [3,11]):
-            sol += " B'CD "
+            sol += " Q'RS "
         elif(arg == [2,6]):
-            sol += " A'CD' "
+            sol += " P'RS' "
         elif(arg == [2,10]):
-            sol += " B'CD' "
+            sol += " Q'RS' "
         elif(arg == [4,5]):
-            sol += " A'BC' "
+            sol += " P'QR' "
         elif (arg == [4, 12]):
-            sol += " BC'D' "
+            sol += " QR'S' "
         elif(arg == [4,6]):
-            sol += " A'BD' "
+            sol += " P'QS' "
         elif(arg == [5,7]):
-            sol += " A'BD "
+            sol += " P'QS "
         elif(arg == [5,13]):
-            sol += " BC'D "
+            sol += " QR'S "
         elif(arg == [6,7]):
-            sol += " A'BC "
+            sol += " P'QR "
         elif(arg == [7,15]):
-            sol += " BCD "
+            sol += " QRS "
         elif(arg == [6,14]):
-            sol += " BCD' "
+            sol += " QRS' "
         elif(arg == [12,13]):
-            sol += " ABC' "
+            sol += " PQR' "
         elif(arg == [8,12]):
-            sol += " AC'D' "
+            sol += " PR'S' "
         elif(arg == [12,14]):
-            sol += " ABD' "
+            sol += " PQS' "
         elif(arg == [9,13]):
-            sol += " AC'D "
+            sol += " PR'S "
         elif(arg == [13,15]):
-            sol += " ABD "
+            sol += " PQS "
         elif(arg == [11,15]):
-            sol += " ACD "
+            sol += " PRS "
         elif(arg == [14,15]):
-            sol += " ABC "
+            sol += " PQR "
         elif(arg == [10,14]):
-            sol += " ACD' "
+            sol += " PRS' "
         elif (arg == [8, 9]):
-            sol += " AB'C' "
+            sol += " PQ'R' "
         elif (arg == [8,10]):
-            sol += " AB'D' "
+            sol += " PQ'S' "
         elif (arg == [9,11]):
-            sol += " AB'D "
+            sol += " PQ'S "
         elif (arg == [10, 11]):
-            sol += " AB'C "
+            sol += " PQ'R "
 
     if( len (arg) == 4):
         if( arg == [0,1,2,3]):
-            sol += " A'B' "
+            sol += " P'Q' "
         elif( arg == [0,1,4,5]):
-            sol += " A'C' "
+            sol += " P'R' "
         elif( arg == [0,4,8,12]):
-            sol += " C'D' "
+            sol += " R'S' "
         elif( arg == [0,1,8,9]):
-            sol += " B'C'"
+            sol += " Q'R'"
         elif( arg == [0,2,8,10]):
-            sol += " B'D' "
+            sol += " Q'S' "
         elif(arg == [0,2,4,6]):
-            sol += " A'D' "
+            sol += " P'S' "
         elif( arg == [1,5,9,13]):
-            sol += " C'D "
+            sol += " R'S "
         elif( arg == [1,3,5,7]):
-            sol += " A'D "
+            sol += " P'S "
         elif(arg == [1,3,9,11]):
-            sol += " B'D "
+            sol += " Q'S "
         elif(arg == [2,3,6,7]):
-            sol += " A'C "
+            sol += " P'R "
         elif(arg == [2,3,10,11]):
-            sol += " B'C "
+            sol += " Q'R "
         elif(arg == [3,7,11,15]):
-            sol += " CD "
+            sol += " RS "
         elif(arg == [2,6,10,14]):
-            sol += " CD' "
+            sol += " RS' "
         elif(arg == [4,5,6,7]):
-            sol += " A'B "
+            sol += " P'Q "
         elif(arg == [4,5,12,13]):
-            sol += " BC' "
+            sol += " QR' "
         elif(arg == [4,6,12,14]):
-            sol += " BD' "
+            sol += " QS' "
         elif(arg == [5,7,13,15]):
-            sol += " BD "
+            sol += " QS "
         elif(arg == [6,7,14,15]):
-            sol += " BC "
+            sol += " QR "
         elif(arg == [12,13,14,15]):
-            sol += " AB "
+            sol += " PQ "
         elif(arg == [8,9,12,13]):
-            sol += " AC' "
+            sol += " PR' "
         elif(arg == [8,10,12,14]):
-            sol += " AD' "
+            sol += " PS' "
         elif(arg == [9,11,13,15]):
-            sol += " AD "
+            sol += " PS "
         elif(arg == [10,11,14,15]):
-            sol += " AC "
+            sol += " PR "
         elif(arg == [8,9,10,11]):
-            sol += " AB' "
+            sol += " PQ' "
 
     if (len(arg) == 8):
         if(arg == [0,1,2,3,4,5,6,7]):
-            sol += " A' "
+            sol += " P' "
         elif(arg == [0,1,2,3,8,9,10,11]):
-            sol += " B' "
+            sol += " Q' "
         elif(arg == [0,2,4,6,8,10,12,14]):
-            sol += " D' "
+            sol += " S' "
         elif(arg == [0,1,4,5,8,9,12,13]):
-            sol += " C' "
+            sol += " R' "
         elif(arg == [1,3,5,7,9,11,13,15]):
-            sol += " D "
+            sol += " S "
         elif(arg == [4,5,6,7,12,13,14,15]):
-            sol += " B "
+            sol += " Q "
         elif(arg == [2,3,6,7,10,11,14,15]):
-            sol += " C "
+            sol += " R "
         elif(arg == [8,9,10,11,12,13,14,15]):
-            sol += " A "
+            sol += " P "
 
 
     return sol + " + "
@@ -759,7 +761,10 @@ driver_8.append([[-1, -2, -3, -4, -5, -6, -7], [-1, -2, -3, -8, -9, -10, -11], [
                      [-2, -4, -6, -8, -10, -12, -14]])
 
 
-
 # SOLVE -> command = getMap
 #getMap -> minimization(mlist)
-la = "AQUI VA A IR LA FUNCION SIMPLIFICADA"
+
+def Mapear(lista, label):
+    minimization(lista)
+    la = label
+    return label

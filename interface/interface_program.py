@@ -291,12 +291,16 @@ def calcular(arr, ventana, Hventana, var):
                     canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3),y2+ver*(1), outline='red')
 
         elif count == 4:
-            for i in range (0,3):
+            for i in range (0,3): 
                     if arr1[i] == 1 and arr1[i+1] == 1 and arr2[i] == 1 and arr2[i+1] == 1:
                         canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(1), outline='red')
             if arr1[3] == 1 and arr1[0] == 1 and arr2[3] == 1 and arr2[0] == 1:
                 canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
                 canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+            if line1 == 4:
+                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
+            if line2 == 4:
+                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
 
 #            else:
 #                # Rangos de 0 a 3

@@ -3,7 +3,6 @@
 
 from tkinter import *
 
-root = None
 global mlist
 tvar = StringVar
 tvar = ""
@@ -762,4 +761,5 @@ driver_8.append([[-1, -2, -3, -4, -5, -6, -7], [-1, -2, -3, -8, -9, -10, -11], [
 
 
 # SOLVE -> command = getMap
+#getMap -> minimization(mlist)
 la = "AQUI VA A IR LA FUNCION SIMPLIFICADA"

@@ -1,4 +1,4 @@
-def k4v4(listing):
+def k4v4(listing, label):
     line1 = (listing[0], listing[1], listing[3], listing[2])
     line2 = (listing[4], listing[5], listing[7], listing[6])
     line3 = (listing[12], listing[13], listing[15], listing[14])
@@ -16074,4 +16074,4 @@ def k4v4(listing):
         print("Funcion simplificada, f(P, Q, R, S) = ")
 
 
-    print("\n\n")
+    return label

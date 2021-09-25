@@ -30,7 +30,7 @@ import src.k4_groups.k4v_con1 as g1
 
 def tabla4(listing):
 
-    print("Esta version funciona completa para los grupos de 1-3 y 14-16")
+    print("\nEsta version funciona completa para los grupos de 1-3 y 14-16")
     print("Para los demas grupos solo evalua los casos minimos")
 
     print(Fore.RED + " P  Q  R  S")
@@ -81,6 +81,7 @@ def k4v(listing):
 
     print("\n")
 
+    print(Fore.YELLOW + "\t\tMAPA DE KARNAUGH\n")
     print(Fore.LIGHTYELLOW_EX + "  PQ \ RS      00      01      11      10")
     print("          |-------------------------------")
     print("    00    |  ", listing[0] ,"  |  ",listing[1],"  |  ",listing[3],"  |  ",listing[2]," |")
@@ -93,7 +94,8 @@ def k4v(listing):
 
     print("\n")
 
-    print(Fore.LIGHTBLUE_EX + "  PQ \ RS      00      01      11      10")
+    print(Fore.CYAN + "\t\tTABLA DE REFERENCIA\n")
+    print(Fore.LIGHTCYAN_EX + "  PQ \ RS      00      01      11      10")
     print("          |---------------------------------")
     print("    00    |  [1]  |  [2]  |  [3]   |  [4]  |")
     print("          |---------------------------------")

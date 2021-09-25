@@ -29,6 +29,7 @@ def kmaps2(listing, label):
 
     print("\n")
 
+    print(Fore.YELLOW + "MAPA DE KARNAUGH\n")
     print(Fore.LIGHTYELLOW_EX + "  P \ Q      0      1")
     print("         |---------------")
     print("    0    |  ", listing[0] ,"  |  ",listing[1]," |")
@@ -37,6 +38,7 @@ def kmaps2(listing, label):
 
     print("\n")
 
+    print(Fore.BLUE + "TABLA DE REFERENCIA\n")
     print(Fore.LIGHTBLUE_EX + "  P \ Q      0      1")
     print("         |---------------")
     print("    0    |  [1]  |  [2]  |")

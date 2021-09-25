@@ -47,12 +47,12 @@ def minimization(k):
     mini = []
     combo = []
 
-    multicombo2 = [] #used to solve the bug of overlaping combinations,to make possible to have best minimization.
+    multicombo2 = [] #usado para resolver los bug las combinaciones sobrepuestas, para que tenga la mejor minimizacion
     multicombo4 = []
 
     zero_cnt = 0
     prod = 1
-    appended = 0  # used to count the times we ve applied a combination of squares in the map.
+    appended = 0  # usado para contar el numero de veces que aplicamos cuadrados en el mapa
 
     for i in range(0, 16):
 
@@ -76,7 +76,7 @@ def minimization(k):
 
     for i in range(0, 16):
 
-        combo_value = 0  # works as flag to know the most squares for every midterm we can combine.
+        combo_value = 0  # funciona como una bandera para saber la mayor cantidad de cuadrados para cada termino medio que combinamos
         combo_flag = 0
 
         if (k[i] == 0):
@@ -133,14 +133,14 @@ def minimization(k):
 
                 combo.append(1)
 
-#creating multicombo2 and multicombo4 containing the amount of different combinations of 2 and 4 that  midterm can have.
+# creando multicombo2 y multicombo4 conteniendo la cantidad de diferentes combinaciones de 2 y 4 que los terminos medios pueden tener.
 
-
+    # Evaluas los multicombos
     for i in range(0, 16):
         multicombo2_cnt = 0
         multicombo4_cnt = 0
 
-        combo_value = 0  # works as flag to know the most squares for every midterm we can combine.
+        combo_value = 0  # funciona como una bandera para saber la mayor cantidad de cuadrados para cada termino medio que combinamos
         combo_flag = 0
 
         if (k[i] == 0):
@@ -169,8 +169,7 @@ def minimization(k):
                 if (combo_value > 4):
                     break
 
-                if (
-                        (k[i] and k[driver_4[i][j][0] + i] and k[driver_4[i][j][1] + i] and k[driver_4[i][j][2] + i])):
+                if (k[i] and k[driver_4[i][j][0] + i] and k[driver_4[i][j][1] + i] and k[driver_4[i][j][2] + i]):
                     combo_value = 4
                     multicombo4_cnt += 1
                     combo_flag = 1
@@ -196,8 +195,9 @@ def minimization(k):
 
 
 
-                # _calculating  free aces in the map and  position with highest combinable value
-                #_free_aces aren't actually the free aces thought the program,just on the beggining.!!
+                # Calculando los aces libres en el mapa y la posicion con el mas grande valor combinable
+                # los aces libres no son en realidad aces libres, pero lo son solo en el inicio del programa
+
     print(multicombo4)
     already_combined = []
     already_combined = combo
@@ -225,13 +225,13 @@ def minimization(k):
         return
     
 
-    #                                                        minimization code goes after here.
+    # El codigo de la minimizacion procede desde aqui
     map_copy = k
     solution = ""
     timer = 0
 
-    for t in range(0,16):       #preminimization combining the midterms with lower value in multicombo2 first
-        if (multicombo2[t] == 1):               #since they cannot combine somehow different.
+    for t in range(0,16):       # priminimizacion combinando los terminos medios con el menos valor en multicombo2 en primer lugar
+        if (multicombo2[t] == 1):               # ya que no se pueden combinar de otra manera
 
             for j in range(0, 4):
 
@@ -240,7 +240,7 @@ def minimization(k):
                     duo = []
                     duo.append(t)
                     duo.append(t + driver_2[t][j])
-                    duo.sort()
+                    duo.sort() # solo lo ordenas
                     print("Combinando los siguientes cuadrados: ", duo)
                     solution += solver(duo)
                     zero[t] = 1
@@ -255,7 +255,7 @@ def minimization(k):
 
             for j in range(0, 4):
 
-
+                # Si ya esta combinado
                 if ((k[t] and k[t + driver_2[t][j]]) and ((already_combined[t] != 0) and (already_combined[t+driver_2[t][j]] != 0 ) ) ):
 
                     duo = []

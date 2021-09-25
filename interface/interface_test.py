@@ -132,8 +132,8 @@ def calcular(arr, ventana, Hventana, var):
 
         canvas.place(x = 280, y = 92)
 
-        canvas_label = tkinter.Canvas(ventana, height=300, width=400)
-        canvas_label.place(x = 300, y = 500)
+        canvas_label = tkinter.Canvas(ventana, height=400, width=400)
+        canvas_label.place(x = 500, y = 600)
 
         # Dibujar el mapa
         karnaugh_img = canvas.create_image((0,0), image=PicK4, anchor=tkinter.N + tkinter.W)
@@ -150,7 +150,7 @@ def calcular(arr, ventana, Hventana, var):
         label_arr = canvas.create_text((250, 205), text=fila1+fila2+fila3+fila4, font="Calibri 18 bold")
         
         # Poner la funcion simplificada 
-        label_fun = canvas_label.create_text((100, 50), text=label)
+        label_fun = canvas_label.create_text((200, 200), text=label)
         
         
         # Crear grupos 

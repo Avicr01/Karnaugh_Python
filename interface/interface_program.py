@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter import filedialog, messagebox
 import tkinter
 from PIL import ImageTk, Image
+from numpy.core.numeric import array_equal
 from src.k2v import kmaps2 
 from src.k3v import kmaps3 
-from src.k4v import kmaps4 
 from src.k4v import kmaps4 
 
 # Grupos importados para las 4 variables
@@ -145,10 +145,6 @@ def calcular(arr, ventana, Hventana, var):
         line1 = listing[0] + listing[1] + listing[3] + listing[2]
         line2 = listing[4] + listing[5] + listing[7] + listing[6]
 
-        # Tuplas (ya no son necesarias) 
-        tuple1 = (listing[0] , listing[1] , listing[3] , listing[2])
-        tuple2 = (listing[4] , listing[5] , listing[7] , listing[6])
-        
         # Arreglos 
         arr1 = np.array([listing[0] , listing[1] , listing[3] , listing[2]])
         arr2 = np.array([listing[4] , listing[5] , listing[7] , listing[6]])
@@ -180,43 +176,29 @@ def calcular(arr, ventana, Hventana, var):
                     else:
                         canvas.create_rectangle(((i-4)*hor)+x1+hor*(0), y1+ver*(1), ((i-4)*hor)+x2+hor*(0), y2+ver*(1), outline=rancolor())
 
-        elif count == 2: 
-            # Verticales
-            for i in range(0, 4):
-                if np.array_equal(arr1[i:i+2], [1,0]) and np.array_equal(arr2[i:i+2], [1,0]):
-                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline=rancolor())
+        elif count == 2 or count == 3: 
+            for j in range(0, 4):
+                for i in range(0, 2):
+                    # De uno 
+                    if arr2d[i, j] == 1 and arr2d[i - 1, j] == 0 and arr2d[i, j - 3] == 0 and arr2d[i, j - 1] == 0:
+                        canvas.create_rectangle((j*hor)+x1+hor*(0), y1+ver*(i), (j*hor)+x2+hor*(0), y2+ver*(i), outline=rancolor())
 
-            if np.array_equal(arr1[2:4], [0,1]) and np.array_equal(arr2[2:4], [0,1]):
-                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                    # Verticales de 2
+                    if arr2d[i, j] == 1 and arr2d[i - 1, j] == 1 and arr2d[i, j - 3] == 0 and arr2d[i, j - 1] == 0:
+                        canvas.create_rectangle((j*hor)+x1+hor*(0), y1+ver*(0), (j*hor)+x2+hor*(0), y2+ver*(1), outline=rancolor())
 
-            # Horizontales juntas
-            for i in range(0, 3):
-                if np.array_equal(arr1[i:i+2], [1, 1]):
-                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(0), outline=rancolor())
-                if np.array_equal(arr2[i:i+2], [1, 1]):
-                    canvas.create_rectangle(((i)*hor)+x1+hor*(0), y1+ver*(1), ((i)*hor)+x2+hor*(1), y2+ver*(1), outline=rancolor())
+            for j in range(0, 3):
+                for i in range(0, 2):
+                    # Horizontales de 2
+                    if arr2d[i, j] == 1 and arr2d[i, j - 1] == 0 and arr2d[i, j - 2] == 0 and arr2d[i, j - 3] == 1:
+                        canvas.create_rectangle((j*hor)+x1+hor*(0), y1+ver*(i), (j*hor)+x2+hor*(1), y2+ver*(i), outline=rancolor())
 
-                if listing[0] + listing[2] == 2:
-                    canvas.create_rectangle(x1, y1, x2, y2, outline='red')
-                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-                elif listing[4] + listing[6] == 2:
-                    canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline='red')
-                    canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-
-            # Separadas
-            for row in range(0, 2):
-                for col in range(0, 3):
-                    if arr2d[row][col] == 1 and arr2d[row][col-1] == 0 and arr2d[row][col+1] == 0 and arr2d[row-1][col] == 0:
-                            canvas.create_rectangle(((col)*hor)+x1+hor*(0), ((row)*ver)+y1+ver*(0), ((col)*hor)+x2+hor*(0), ((row)*ver)+y2+ver*(0), outline=rancolor())
-            
-            # Casos especiales
-            if arr2d[1][3] == 1 and arr2d[1][0] == 0 and arr2d[1][2] == 0 and arr2d[0][3] == 0:
-                    canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
-
-            if arr2d[0][3] == 1 and arr2d[0][0] == 0 and arr2d[0][2] == 0 and arr2d[1][3] == 0:
-                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
-
-        elif count == 3:
+            if listing[0] + listing[2] == 2:
+                canvas.create_rectangle(x1, y1, x2, y2, outline='red')
+                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
+            elif listing[4] + listing[6] == 2:
+                canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline='red')
+                canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
 
             for i in range(0, 2):
                 for j in range(0, 2):
@@ -224,207 +206,260 @@ def calcular(arr, ventana, Hventana, var):
                         canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(j), (i*hor)+x2+hor*(1), y2+ver*(j), outline=rancolor())
                         canvas.create_rectangle(((i+1)*hor)+x1+hor*(0), y1+ver*(j), ((i+1)*hor)+x2+hor*(1), y2+ver*(j), outline=rancolor())
 
-            # Dos juntos arriba y uno abajo
-            for i in range (0,3):
-                if arr1[i] == 1 and arr1[i+1] == 1 and arr2[i] == 1:
-                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(0), outline='red')
-                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline='blue')
-                if arr1[i] == 1 and arr1[i+1] == 1 and arr2[i+1] == 1:
-                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(0), outline='red')
-                    canvas.create_rectangle((i*hor)+x1+hor*(1), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(1), outline='blue')
-                if arr1[i] == 1 and arr2[i] == 1 and arr2[i+1] == 1:
-                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline='red')
-                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(1), (i*hor)+x2+hor*(1), y2+ver*(1), outline='blue')
-                if arr1[i+1] == 1 and arr2[i] == 1 and arr2[i+1] == 1:
-                    canvas.create_rectangle((i*hor)+x1+hor*(1), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(1), outline='red')
-                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(1), (i*hor)+x2+hor*(1), y2+ver*(1), outline='blue')
-            
-            # Caos especiales
-            if tuple1[3] == 1 and tuple1[0] == 1 and tuple2[3] == 1:
-                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3),y2+ver*(1), outline='blue')
-                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0),y2+ver*(0), outline='red')
-                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3),y2+ver*(0), outline='red')
-            if tuple1[0] == 1 and tuple1[3] == 1 and tuple2[0] == 1:
-                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0),y2+ver*(1), outline='blue')
-                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0),y2+ver*(0), outline='red')
-                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3),y2+ver*(0), outline='red')
-            if tuple1[3] == 1 and tuple2[3] == 1 and tuple2[0] == 1:
-                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3),y2+ver*(1), outline='blue')
-                canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0),y2+ver*(1), outline='red')
-                canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3),y2+ver*(1), outline='red')
-            if tuple1[0] == 1 and tuple2[3] == 1 and tuple2[0] == 1:
-                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0),y2+ver*(1), outline='blue')
-                canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0),y2+ver*(1), outline='red')
-                canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3),y2+ver*(1), outline='red')
+            if count == 3:
+                for i in range(0, 2):
+                    if np.array_equal(arr2d[i][:], [1, 1, 0, 1]):
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(i), x2+hor*(1), y2+ver*(i), outline=rancolor())
+                    if np.array_equal(arr2d[i][:], [1, 0, 1, 1]):
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(i), x2+hor*(3), y2+ver*(i), outline=rancolor())
 
         elif count == 5 or count == 4:
-            l4up = 0
-            l4dw = 0
             sq4 = 0
+            sqEXT = 0
+            vertices = 0
 
             # Horizontal grupos de 4 
             if line1 == 4:
                 canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
-                l4up = 1
             if line2 == 4:
                 canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
-                l4dw = 1
 
             # Cuadrado
             for i in range (0,3): 
-                    if np.array_equal(arr1[i:i+2], [1, 1]) and np.array_equal(arr2[i:i+2], [1, 1]):
-                        canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(1), outline= rancolor())
-                        sq4 = 1
-#                    else:
-#                        if arr1[i] == 1 and arr1[i+1] == 1:
-#                            canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(0), outline=rancolor())
-#                        if arr2[i] == 1 and arr2[i+1] == 1:
-#                            canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(1), (i*hor)+x2+hor*(1), y2+ver*(1), outline=rancolor())    
-                            
-            if arr1[3] == 1 and arr1[0] == 1 and arr2[3] == 1 and arr2[0] == 1:
-                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+                if np.array_equal(arr1[i:i+2], [1, 1]) and np.array_equal(arr2[i:i+2], [1, 1]):
+                    canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(1), outline= rancolor())
+                    sq4 = 1
+            
+            if np.array_equal(arr1, [1, 0, 0, 1]) and np.array_equal(arr2, [1, 0, 1, 1]):
                 canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+            elif np.array_equal(arr1, [1, 0, 0, 1]) and np.array_equal(arr2, [1, 1, 0, 1]):
+                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+            elif np.array_equal(arr1, [1, 1, 0, 1]) and np.array_equal(arr2, [1, 0, 0, 1]):
+                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+            elif np.array_equal(arr1, [1, 0, 1, 1]) and np.array_equal(arr2, [1, 0, 0, 1]):
+                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
+                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
+            elif np.array_equal(arr1, [1, 0, 0, 1]) and not np.array_equal(arr2, [1, 0, 0, 1]):
+                canvas.create_rectangle(x1, y1, x2, y2, outline='red')
+                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
+                vertices = 1
+            elif np.array_equal(arr2, [1, 0, 0, 1]) and not np.array_equal(arr1, [1, 0, 0, 1]):
+                canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline='red')
+                canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
+                vertices = 1
 
-            # Filas de [1 1 1] = 2 grupos de 2
-            if l4up + l4dw == 0 and sq4 == 0:
+            for j in range(0, 4):
+                for i in range(0, 2):
+                    # De uno 
+                    if arr2d[i, j] == 1 and arr2d[i - 1, j] == 0 and arr2d[i, j - 3] == 0 and arr2d[i, j - 1] == 0:
+                        canvas.create_rectangle((j*hor)+x1+hor*(0), y1+ver*(i), (j*hor)+x2+hor*(0), y2+ver*(i), outline=rancolor())
+
+                    # Verticales de 2
+                    if arr2d[i, j] == 1 and arr2d[i - 1, j] == 1 and arr2d[i, j - 3] == 0 and arr2d[i, j - 1] == 0:
+                        canvas.create_rectangle((j*hor)+x1+hor*(0), y1+ver*(0), (j*hor)+x2+hor*(0), y2+ver*(1), outline=rancolor())
+                        
+            for j in range(0, 3):
+                for i in range(0, 2):
+                    # Horizontales de 2
+                    if arr2d[i, j] == 1 and arr2d[i, j - 1] == 0 and arr2d[i, j - 2] == 0 and arr2d[i, j - 3] == 1 and sq4 == 0:
+                        canvas.create_rectangle((j*hor)+x1+hor*(0), y1+ver*(i), (j*hor)+x2+hor*(1), y2+ver*(i), outline=rancolor())
+
+
+            if count == 4:
+                # Patrones de tres juntos 
+                if np.array_equal(arr1, [1, 1, 1, 0]):
+                    if (arr2[0] == arr2[2] == 0):
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
+                    elif arr2[0] == 1:
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
+                    elif arr2[2] == 1:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+
+                if np.array_equal(arr2, [1, 1, 1, 0]):
+                    if arr1[0] == arr1[2] == 0:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
+                    elif arr1[0] == 1:
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
+                    elif arr1[2] == 1:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+
+                if np.array_equal(arr1, [0, 1, 1, 1]):
+                    if arr2[1] == arr2[3] == 0:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
+                    elif arr2[1] == 1:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
+                    elif arr2[3] == 1:
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
+
+                if np.array_equal(arr2, [0, 1, 1, 1]):
+                    if arr1[1] == arr1[3] == 0:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
+                    elif arr1[1] == 1:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                    elif arr1[3] == 1:
+                        canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
+                        
+                
+                # Patrones separados
+                if np.array_equal(arr1, [1, 0, 1, 1]):
+                    if (arr2[0] == arr2[2] == 0):
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+                    elif arr2[0] == 1:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
+                    elif arr2[2] == 1:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline="red")
+
+                if np.array_equal(arr2, [1, 0, 1, 1]): # Este es mi ejemplo
+                    if arr1[0] == arr1[2] == 0:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline="red")
+                    elif arr1[0] == 1:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                    elif arr1[2] == 1:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline="red")
+
+                if np.array_equal(arr1, [1, 1, 0, 1]):
+                    if arr2[1] == arr2[3] == 0:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+                    elif arr2[1] == 1:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+                    elif arr2[3] == 1:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+
+                if np.array_equal(arr2, [1, 1, 0, 1]):
+                    if arr1[1] == arr1[3] == 0:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+                    elif arr1[1] == 1:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+                    elif arr1[3] == 1:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+
                 for i in range(0, 2):
                     for j in range(0, 2):
-                        if np.array_equal(arr2d[j][i:i+3], [1, 1, 1]):
-                            canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(j), (i*hor)+x2+hor*(1), y2+ver*(j), outline=rancolor())
-                            canvas.create_rectangle(((i+1)*hor)+x1+hor*(0), y1+ver*(j), ((i+1)*hor)+x2+hor*(1), y2+ver*(j), outline=rancolor())
+                        if np.array_equal(arr1[i:i+3], [1, 0, 1]) and np.array_equal(arr2[i:i+3], [1, 0, 1]):
+                            canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline=rancolor())
+                            canvas.create_rectangle((i*hor)+x1+hor*(2), y1+ver*(0), (i*hor)+x2+hor*(2), y2+ver*(1), outline=rancolor())
+                
                             
+
             if count == 5:
-                if l4up:
-                    for i in range(0, 3):
-                        if arr2d[1][i] == 1 and (arr2d[1][i+1] == 0):
-                            canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline=rancolor())
+                # Patrones de tres juntos 
 
-                    if arr2d[1][3] == 1 and (arr2d[1][2] == 0):
-                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                if np.array_equal(arr1, [0, 1, 1, 1]):
+                    if sq4 == 0:
+                        if arr2[0] + arr2[2] == 2 or arr2[0] + arr2[1] == 2 or vertices == 1:
+                            canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
+                            canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
+                        elif arr2[1] + arr2[3] == 2:
+                            canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
+                    else:
+                        if arr2[1] + arr2[2] == 2 and arr1[3] == 1:
+                            canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
+                        if arr2[2] + arr2[3] == 2 and arr1[2] == 1:
+                                canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
 
-                if l4dw:
-                    for i in range(0, 3):
-                        if arr2d[0][i] == 1 and (arr2d[0][i+1] == 0):
-                            canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline=rancolor())
+                if np.array_equal(arr2, [0, 1, 1, 1]):
+                    if sq4 == 0:
+                        if arr1[0] + arr1[2] == 2 or arr1[0] + arr1[1] == 2 or vertices == 1:
+                            canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                            canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
+                        elif arr1[1] + arr1[3] == 2:
+                            canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
+                    else:
+                        if arr1[1] + arr1[2] == 2 and arr2[3] == 1:
+                            canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                        if arr1[2] + arr1[3] == 2 and arr2[2] == 1:
+                                canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
 
-                    if arr2d[0][3] == 1 and (arr2d[0][2] == 0):
-                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                if np.array_equal(arr1, [1, 1, 1, 0]):
+                    if sq4 == 0:
+                        if arr2[1] + arr2[3] == 2 or arr2[2] + arr2[3] == 2 or vertices == 1:
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+                            canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
+                        elif arr2[0] + arr2[2] == 2:
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+                    else:
+                        if arr2[1] + arr2[2] == 2 and arr1[0] == 1:
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+                        if arr2[0] + arr2[1] == 2 and arr1[2] == 1:
+                                canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
+
+                if np.array_equal(arr2, [1, 1, 1, 0]):
+                    if sq4 == 0:
+                        if arr1[1] + arr1[3] == 2 or arr1[2] + arr1[3] == 2 or vertices == 1:
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+                            canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
+                        elif arr1[0] + arr1[2] == 2:
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+                    else:
+                        if arr1[1] + arr1[2] == 2 and arr2[0] == 1:
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+                        if arr1[0] + arr1[1] == 2 and arr2[2] == 1:
+                                canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline=rancolor())
+
+                # Patrones separados
+                if np.array_equal(arr1, [1, 0, 1, 1]):
+                    if np.array_equal(arr2, [1, 0, 0, 1]):
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
+                    elif sq4 == 1 or np.array_equal(arr2, [1, 0, 1, 0]):
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                            canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+                    else:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+
+                if np.array_equal(arr2, [1, 0, 1, 1]):
+                    if np.array_equal(arr1, [1, 0, 0, 1]):
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                    elif sq4 == 1 or np.array_equal(arr1, [1, 0, 1, 0]):
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline="red")
+                            canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline="red")
+                    else:
+                        canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline="red")
+
+                if np.array_equal(arr1, [1, 1, 0, 1]):
+                    if np.array_equal(arr2, [1, 0, 0, 1]):
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+                    elif sq4 == 1 or np.array_equal(arr2, [0, 1, 0, 1]):
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                            canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+                    else:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(0), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline="red")
+
+                if np.array_equal(arr2, [1, 1, 0, 1]):
+                    if np.array_equal(arr1, [1, 0, 0, 1]):
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+                    elif sq4 == 1 or np.array_equal(arr1, [0, 1, 0, 1]):
+                            canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline="red")
+                            canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline="red")
+                    else:
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline=rancolor())
+                        canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline="red")
+                        canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline="red")
                     
-
-#                for i in range (0,3):
-#                    if arr1[i] == 1 and arr1[i+2] == 1:
-#                        canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(1), y2+ver*(0), outline= rancolor())
-#                    if arr2[i] == 1 and arr2[i+2] == 1:
-#                        canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(1), (i*hor)+x2+hor*(1), y2+ver*(1), outline= rancolor())
-
-#            if line1 == 4:
-#                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline=rancolor())
-#            elif line2 == 4:
-#                canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline= rancolor())
-#            else:
-#                # Rangos de 0 a 3
-#                for i in range(0, 3):
-#                    if tuple1[i] + tuple1[i+1] == 1:
-#                        if listing[0] + listing[1] == 2:
-#                            canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline='red')
-#                        elif listing[1] + listing[3] == 2:
-#                            canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline='red')
-#                        elif listing[3] + listing[2] == 2:
-#                            canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                    if tuple2[i] + tuple2[i+1] == 1:
-#                        if listing[4] + listing[5] == 2:
-#                            canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline='red')
-#                        elif listing[5] + listing[7] == 2:
-#                            canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline='red')
-#                        elif listing[7] + listing[6] == 2:
-#                            canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#
-#                    for j in range(0, 4):
-#
-#                            if tuple1[i] + tuple2[i] == 1:
-#                        
-#
-#                    if tuple1[x] + tuple1[x+1] == 1:
-#                        if line1 == 2:
-#                            # Horizontal
-#                            if listing[0] + listing[1] == 2:
-#                                canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline='red')
-#                            elif listing[1] + listing[3] == 2:
-#                                canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline='red')
-#                            elif listing[3] + listing[2] == 2:
-#                                canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                                
-#                                
-#                            elif listing[0] + listing[2] == 2:
-#                                canvas.create_rectangle(x1, y1, x2, y2, outline='red')
-#                                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                            # Separacion
-#                            elif listing[0] + listing[3] == 2:
-#                                canvas.create_rectangle(x1, y1, x2, y2, outline='red')
-#                                canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline='blue')
-#                            elif listing[1] + listing[2] == 2:
-#                                canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(1), y2+ver*(0), outline='red')
-#                                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='blue')
-#
-#                            if tuple1[x] == tuple2[x]:
-#                                # Vertical
-#                                if listing[0] + listing[4] == 2:
-#                                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
-#                                elif listing[1] + listing[5] == 2:
-#                                    canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='red')
-#                                elif listing[3] + listing[7] == 2:
-#                                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='red')
-#                                elif listing[2] + listing[6] == 2:
-#                                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
-#                            else:
-#                                if x == 4:
-#                                    canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline='red')
-#                                if x == 5:
-#                                    canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline='red')
-#                                if x == 6:
-#                                    canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                                if x == 7:
-#                                    canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline='red')
-#
-#                        elif line2 == 2:
-#                            # Horizontal 
-#                            if listing[4] + listing[5] == 2:
-#                                canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline='red')
-#                            elif listing[5] + listing[7] == 2:
-#                                canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline='red')
-#                            elif listing[7] + listing[6] == 2:
-#                                canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                            elif listing[4] + listing[6] == 2:
-#                                canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline='red')
-#                                canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                            # Separacion
-#                            elif listing[4] + listing[7] == 2:
-#                                canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline='red')
-#                                canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline='blue')
-#                            elif listing[5] + listing[6] == 2:
-#                                canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline='red')
-#                                canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='blue')
-#                        
-#                            if tuple1[x] == tuple2[x]:
-#                                # Vertical
-#                                if listing[0] + listing[4] == 2:
-#                                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
-#                                elif listing[1] + listing[5] == 2:
-#                                    canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='red')
-#                                elif listing[3] + listing[7] == 2:
-#                                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='red')
-#                                elif listing[2] + listing[6] == 2:
-#                                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
-#                    
-#                            else:
-#                                if x == 4:
-#                                    canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(0), y2+ver*(1), outline='red')
-#                                if x == 5:
-#                                    canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline='red')
-#                                if x == 6:
-#                                    canvas.create_rectangle(x1+hor*(3), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                                if x == 7:
-#                                    canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(2), y2+ver*(1), outline='red')
         elif count == 6:
             # Horizontal grupos de 4 
             if line1 == 4:
@@ -514,91 +549,6 @@ def calcular(arr, ventana, Hventana, var):
                     canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(0), outline=rancolor())
                     canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline=rancolor())
                     canvas.create_rectangle(x1+hor*(2), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline=rancolor())
-
-
-#            if np.array_equal(arr1[2:4], [0,1]) and np.array_equal(arr2[2:4], [0,1]):
-#                canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline=rancolor())
-                #else:
-                    # Rectangulos grupos de 2
-#                    if tuple1[i] == 1 and tuple2[i] == 1 and tuple1[i+2] == 1 and tuple2[i+2] == 1:
-#                        canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline='cyan')
-#                        canvas.create_rectangle((i*hor)+x1+hor*(2), y1+ver*(0), (i*hor)+x2+hor*(2), y2+ver*(1), outline='cyan')
-#
-#                    if tuple1[i] == 1 and tuple2[i] == 1 and tuple1[i+1] == 1 and tuple2[i+2] == 1:
-#                        canvas.create_rectangle((i*hor)+x1+hor*(0), y1+ver*(0), (i*hor)+x2+hor*(0), y2+ver*(1), outline='cyan')
-#                        canvas.create_rectangle((i*hor)+x1+hor*(2), y1+ver*(0), (i*hor)+x2+hor*(2), y2+ver*(1), outline='cyan')
-
-            #if tuple1[3] == 1 and tuple2[3] == 1 and (tuple1[2] == 0 or tuple2[2] == 0):
-            #    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='cyan')
-            
-#            if line1 == 2:
-#                # Horizontal 
-#                if listing[0] + listing[1] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
-#                elif listing[1] + listing[3] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='blue')
-#                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
-#                elif listing[3] + listing[2] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='blue')
-#                elif listing[0] + listing[2] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='green')
-#                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='blue')
-#
-#                # Separacion
-#                elif listing[0] + listing[3] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(1), x2+hor*(3), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='green')
-#                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
-#                elif listing[1] + listing[2] == 0:
-#                    canvas.create_rectangle(x1+hor*(1), y1+ver*(1), x2+hor*(1), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='blue')
-#                    
-#            elif line2 == 2:
-#                # Horizontal
-#                if listing[4] + listing[5] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
-#                elif listing[5] + listing[7] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='blue')
-#                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
-#                elif listing[7] + listing[6] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='blue')
-#                elif listing[4] + listing[6] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                    canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='blue')
-#
-#                # Separacion
-#                elif listing[4] + listing[7] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                    canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='green')
-#                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
-#                elif listing[5] + listing[6] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(3), y2+ver*(0), outline='red')
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='green')
-#                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='blue')
-#
-#            elif line1 == 3 or line2 == 3:
-#                # Verticales en mismo lugar
-#                if listing[0] + listing[4] == 0:
-#                    canvas.create_rectangle(x1+hor*(1), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
-#                elif listing[1] + listing[5] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
-#                elif listing[3] + listing[7] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(0), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(3), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(2), y2+ver*(1), outline='blue')
-#                elif listing[2] + listing[6] == 0:
-#                    canvas.create_rectangle(x1+hor*(0), y1+ver*(0), x2+hor*(1), y2+ver*(1), outline='red')
-#                    canvas.create_rectangle(x1+hor*(2), y1+ver*(0), x2+hor*(3), y2+ver*(1), outline='blue')
 
         elif count == 7:
             for x in range(0, len(listing)):

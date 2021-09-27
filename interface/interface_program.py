@@ -33,8 +33,6 @@ import src.k4_groups.k4v_con3 as g3
 import src.k4_groups.k4v_con2 as g2
 import src.k4_groups.k4v_con1 as g1
 
-import os
-import json
 import random 
 import numpy as np
 

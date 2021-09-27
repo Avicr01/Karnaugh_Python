@@ -1435,7 +1435,6 @@ def kmaps3 (listing, label):
         label += "Funcion simplificada, S(P, Q, R) = P'R' + PQR\n"
     
     
-    
     elif line1 == (1,1,0,0) and line2 == (0,1,0,0):
          label += "Grupo de 2 = [1],[2]\n"
          label += "Grupo de 2 = [2],[6]\n"
@@ -1445,5 +1444,68 @@ def kmaps3 (listing, label):
          label += "Grupo de 1 = [6]\n"
          label += "Grupo de 1 = [8]\n"
          label += "Funcion simplificada, f(P , Q, R) = P'Q'R' + PQ'R + PQR' \n"
+         #Grupos que no aparecen
+    elif line1 == (0,0,1,0) and line2 == (1,0,1,0):
+         label += "Grupo de 1 = [5]\n"
+         label += "Grupo de 2 = [3],[7]\n"
+         label += "Funcion simplificada, f(P, Q, R) = QR + PQ'R' \n"
+
+    elif line1 == (1,0,1,0) and line2 == (0,0,1,0):
+         label += "Grupo de 1 = [1]\n"
+         label += "Grupo de 2 = [3],[7]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'Q'R' + QR \n"
+
+    elif line1 == (1,0,0,0) and line2 == (1,0,1,0):
+         label += "Grupo de 1 = [7]\n"
+         label += "Grupo de 2 = [1],[5]\n"
+         label += "Funcion simplificada, f(P, Q, R) = Q'R' + PQR \n"
+
+    elif line1 == (0,1,0,0) and line2 == (1,0,0,1):
+         label += "Grupo de 1 = [2]\n"
+         label += "Grupo de 2 = [7],[5]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'Q'R + PR' \n" 
+
+    elif line1 == (0,1,0,1) and line2 == (0,1,0,0):
+         label += "Grupo de 1 = [4]\n"
+         label += "Grupo de 2 = [2],[6]\n"
+         label += "Funcion simplificada, f(P, Q, R) = Q'R + P'QR' \n"
+
+    elif line1 == (0,1,0,1) and line2 == (0,0,0,1):
+         label += "Grupo de 1 = [2]\n"
+         label += "Grupo de 2 = [4],[8]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'Q'R + QR' \n"
+
+    elif line1 == (1,0,1,0) and line2 == (0,0,0,1):
+         label += "Grupo de 1 = [1]\n"
+         label += "Grupo de 1 = [3]\n"
+         label += "Grupo de 1 = [8]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'Q'R' + P'QR + PQR' \n"
+
+    elif line1 == (1,0,1,0) and line2 == (1,0,0,0):
+         label += "Grupo de 1 = [3]\n"
+         label += "Grupo de 2 = [1],[5]\n"
+         label += "Funcion simplificada, f(P, Q, R) = Q'R' + P'QR \n"
+
+    elif line1 == (1,0,1,1) and line2 == (0,0,0,0):
+         label += "Grupo de 2 = [3],[4]\n"
+         label += "Grupo de 2 = [5],[1]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'R' + P'Q \n"
+
+    elif line1 == (0,0,0,0) and line2 == (1,1,0,1):
+         label += "Grupo de 2 = [5],[6]\n"
+         label += "Grupo de 2 = [8],[5]\n"
+         label += "Funcion simplificada, f(P, Q, R) = PQ' + PR' \n"
+
+    elif line1 == (0,1,0,1) and line2 == (1,0,0,0):
+         label += "Grupo de 1 = [2]\n"
+         label += "Grupo de 1 = [4]\n"
+         label += "Grupo de 1 = [5]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'Q'R + P'QR' + PQ'R' \n"
+
+    elif line1 == (1,0,1,1) and line2 == (0,1,0,0):
+         label += "Grupo de 1 = [6]\n"
+         label += "Grupo de 2 = [3],[4]\n"
+         label += "Grupo de 2 = [5],[1]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'R' + P'Q + PQ'R \n"
 
     return label

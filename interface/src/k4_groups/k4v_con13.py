@@ -4,7 +4,8 @@ def k4v13(listing, label):
     line3 = (listing[12], listing[13], listing[15], listing[14])
     line4 = (listing[8], listing[9], listing[11], listing[10])
 
-    # Para grupos de 13 unos
+
+# Para grupos de 13 unos
         # Grupo horizontales de 3
         # [1][1][1]
     if          line1 == (0, 0, 0, 1) \
@@ -912,7 +913,85 @@ def k4v13(listing, label):
         label += "Grupo de 4 = { [6], [7], [10], [11] }\n"
         label += "Grupo de 4 = { [4], [8], [1], [5] }\n"
         label += "Grupo de 4 = { [13], [14], [15], [16] }\n"
-        label += "Funcion simplificada, f(P, Q, R, S) = P'S' + QS + PQ' + R'S'\n"
+        label += "Funcion simplificada, f(P, Q, R, S) = P'S' + QS + PQ' + R'S'\n" 
+
+    elif        line1 == (1, 1, 0, 0) \
+            and line2 == (1, 1, 1, 1) \
+            and line3 == (1, 1, 1, 1) \
+            and line4 == (0, 1, 1, 1):
+        label += "Grupo de 4 = { [1], [2], [5], [6] }\n"
+        label += "Grupo de 4 = { [2], [6], [10], [14] }\n"
+        label += "Grupo de 4 = { [11], [12], [15], [16] }\n"
+        label += "Grupo de 8 = { [5], [6], [7], [8], [9], [10], [11], [12] }\n"
+        label += "Funcion simplificada, f(P, Q, R, S) = P'R' + Q + PR + R'S\n"
+
+    elif        line1 == (1, 1, 1, 0) \
+            and line2 == (0, 1, 1, 1) \
+            and line3 == (1, 1, 1, 1) \
+            and line4 == (1, 0, 1, 1):
+        label += "Grupo de 2 = { [1], [2] }\n"
+        label += "Grupo de 4 = { [3], [7], [11], [15] }\n"
+        label += "Grupo de 4 = { [6], [7], [10], [11] }\n"
+        label += "Grupo de 4 = { [1], [2], [5], [6] }\n"
+        label += "Grupo de 4 = { [12], [16], [9], [13] }\n"
+        label += "Grupo de 4 = { [7], [8], [11], [12] }\n"
+        label += "Funcion simplificada, f(P, Q, R, S) = QR + P'Q'R' + RS + QS + PS'\n"
+
+    elif        line1 == (1, 1, 1, 1) \
+            and line2 == (0, 0, 1, 1) \
+            and line3 == (1, 1, 1, 1) \
+            and line4 == (1, 1, 0, 1):
+        label += "Grupo de 4 = { [1], [4], [13], [16] }\n"
+        label += "Grupo de 4 = { [1], [2], [3], [4] }\n"
+        label += "Grupo de 4 = { [7], [8], [11], [12] }\n"
+        label += "Grupo de 4 = { [9], [10], [13], [14] }\n"
+        label += "Funcion simplificada, f(P, Q, R, S) = P'Q' + QR + PR' + Q'S'\n"
+
+    elif        line1 == (1, 1, 1, 1) \
+            and line2 == (1, 0, 0, 1) \
+            and line3 == (1, 1, 1, 1) \
+            and line4 == (1, 1, 1, 0):
+        label += "Grupo de 4 = { [1], [2], [3], [4] }\n"
+        label += "Grupo de 4 = { [8], [12], [5], [9] }\n"
+        label += "Grupo de 4 = { [10], [11], [14], [15] }\n"
+        label += "Grupo de 4 = { [13], [14], [1], [2] }\n"
+        label += "Funcion simplificada, f(P, Q, R, S) = P'Q' + QS' + Q'R' + PS\n"
+
+
+        # Grupos de [1][0][0][0]
+        #           [0][0][0][1]
+        #           [1]
+    elif        line1 == (0, 1, 1, 1) \
+            and line2 == (1, 1, 1, 0) \
+            and line3 == (0, 1, 1, 1) \
+            and line4 == (1, 1, 1, 1):
+        label += "Grupo de 2 = { [5], [6] }\n"
+        label += "Grupo de 4 = { [11], [12], [15], [16] }\n"
+        label += "Grupo de 4 = { [15], [16], [3], [4] }\n"
+        label += "Grupo de 4 = { [13], [14], [15], [16] }\n"
+        label += "Grupo de 8 = { [2], [3], [6], [7], [10], [11], [14], [15] }\n"
+        label += "Funcion simplificada, f(P, Q, R, S) = S + Q'R + P'QR' + PQ' + PR\n"
+
+    elif        line1 == (1, 0, 1, 1) \
+            and line2 == (1, 1, 1, 1) \
+            and line3 == (0, 0, 1, 1) \
+            and line4 == (1, 1, 1, 1):
+        label += "Grupo de 2 = { [5], [6] }\n"
+        label += "Grupo de 4 = { [4], [8], [5], [9] }\n"
+        label += "Grupo de 4 = { [5], [6], [7], [8] }\n"
+        label += "Grupo de 4 = { [13], [14], [15], [16] }\n"
+        label += "Grupo de 8 = { [3], [4], [7], [8], [11], [12], [15], [16] }\n"
+        label += "Funcion simplificada, f(P, Q, R, S) = R + P'Q + PQ' + P'S'\n"
+
+    elif        line1 == (1, 1, 0, 1) \
+            and line2 == (1, 1, 1, 1) \
+            and line3 == (1, 0, 0, 1) \
+            and line4 == (1, 1, 1, 1):
+        label += "Grupo de 4 = { [1], [2], [5], [6] }\n"
+        label += "Grupo de 4 = { [5], [6], [7], [8] }\n"
+        label += "Grupo de 4 = { [13], [14], [15], [16] }\n"
+        label += "Grupo de 8 = { [4], [8], [12], [16], [1], [5], [9], [13] }\n"
+        label += "Funcion simplificada, f(P, Q, R, S) = S' + P'Q + PQ' + P'R'\n"
 
     return label
 

@@ -1444,7 +1444,31 @@ def kmaps3 (listing, label):
          label += "Grupo de 1 = [6]\n"
          label += "Grupo de 1 = [8]\n"
          label += "Funcion simplificada, f(P , Q, R) = P'Q'R' + PQ'R + PQR' \n"
-         #Grupos que no aparecen
+
+
+#Grupos que no aparecian
+
+    elif line1 == (0,1,0,0) and line2 == (0,1,0,1):
+         label += "Grupo de 2 = [2],[6]\n"
+         label += "Grupo de 1 = [8]\n"
+         label += "Funcion simplificada, f(P, Q, R) = Q'R + PQR' \n"
+
+    elif line1 == (0,0,1,0) and line2 == (1,0,0,1):
+         label += "Grupo de 2 = [8],[5]\n"
+         label += "Grupo de 1 = [3]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'QR + PR' \n"
+
+    elif line1 == (0,0,0,1) and line2 == (1,0,1,0):
+         label += "Grupo de 1 = [4]\n"
+         label += "Grupo de 1 = [5]\n"
+         label += "Grupo de 1 = [7]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'QR' + PQ'R' + PQR \n"
+
+    elif line1 == (1,1,0,1) and line2 == (0,0,0,0):
+         label += "Grupo de 2 = [1],[2]\n"
+         label += "Grupo de 2 = [4],[1]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'Q' + P'R' \n"
+
     elif line1 == (0,0,1,0) and line2 == (1,0,1,0):
          label += "Grupo de 1 = [5]\n"
          label += "Grupo de 2 = [3],[7]\n"

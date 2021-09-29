@@ -34,23 +34,21 @@ def _paint():
     return "#" + ''.join([random.choice('0123456789AB') for j in range(6)])
 
  
-print(np.array_equal([1, 2], [1, 2]))
+# print(np.array_equal([1, 2], [1, 2]))
 
-arr = [1, 2, 3, 4]
 
 canvas = tk.Canvas(root, height=360, width=400)
 canvas.pack()
-
-fila1 = "{}      {}".format(arr[1], arr[2])
-fila2 = "{}      {}".format(arr[3], arr[0])
-
-bg_img = tk.PhotoImage(file="interface/images/kar2.png")
-bg_label = canvas.create_image((0,0), image=bg_img, anchor=tk.N + tk.W)
-label_arr = canvas.create_text((200, 120), text=fila1+"\n"+fila2, font="Calibri 20 bold")
 
 canvas.create_rectangle(20, 40, 70, 90, outline=_paint())
 canvas.create_rectangle(50, 20, 90, 30, outline=_paint())
 canvas.create_rectangle(200, 140, 170, 190, outline=_paint())
 canvas.create_rectangle(10, 10, 100, 120, outline=_paint())
+
+tmp = np.ones((2, 1), dtype=np.int64)
+arr = [[1], [1]]
+print(arr)
+print(tmp)
+print("is equal ", np.array_equal(tmp, arr))
 
 root.mainloop()

@@ -1,6 +1,6 @@
-def agrupador(group, coords):
+def agrupador(group, pos):
     fun = ""
-    pos = []
+    #pos = []
 
     if group == 1:
         if(pos == [0]):
@@ -40,7 +40,7 @@ def agrupador(group, coords):
             fun += " P'Q'R' "
         elif(pos == [0,2]):
             fun += " P'Q'S' "
-        elif pos == [0, 4]:
+        elif pos == [0,4]:
             fun += " P'R'S' "
         elif(pos == [0,8]):
             fun += " Q'R'S' "

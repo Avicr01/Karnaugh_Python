@@ -36,7 +36,6 @@ def _paint():
  
 # print(np.array_equal([1, 2], [1, 2]))
 
-
 canvas = tk.Canvas(root, height=360, width=400)
 canvas.pack()
 
@@ -63,6 +62,6 @@ arr2 = [[0, 0, 0, 0],
 
 for j in range(0, 4):
     for i in range(0, 4):
-        
+        print(i)
 
 root.mainloop()

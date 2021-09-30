@@ -626,9 +626,9 @@ def calcular(arr, ventana, Hventana, var):
                     # label += gp.agrupador(1, [i, j])
 
                # Verticales de 2
-               # [[1, x]]
                 if arr2d[i, j] == 1 and arr2d[i - 1, j] == 1 \
                     and arr2d[i, j - 3] == 0 and arr2d[i, j - 1] == 0 \
+                    and arr2d[i-1, j - 3] == 0 and arr2d[i-1, j - 1] == 0 \
                     and arr2d[i - 2, j] == 0 and arr2d[i - 3, j] == 0:
                     if i == 0:
                         canvas.create_rectangle(x1+hor*j, y1+ver*(0), x2+hor*j, y2+ver*(0), outline='red')
@@ -638,9 +638,9 @@ def calcular(arr, ventana, Hventana, var):
                     # label += gp.agrupador(2, [[i, j], [i-1, j-1]])
 
                # Horizontales de 2
-               # [[1], [x]]
                 if arr2d[i, j] == 1 and arr2d[i, j-1] == 1 \
                     and arr2d[i - 3, j] == 0 and arr2d[i - 1, j] == 0 \
+                    and arr2d[i - 3, j-1] == 0 and arr2d[i - 1, j-1] == 0 \
                     and arr2d[i, j - 2] == 0 and arr2d[i, j - 3] == 0:
                     if j == 0:
                         canvas.create_rectangle(x1+hor*0, y1+ver*(i), x2+hor*0, y2+ver*(i), outline='red')
@@ -662,10 +662,9 @@ def calcular(arr, ventana, Hventana, var):
 
                 label += gp.agrupador(2, [[i, j], [i-1, j-1]])
 
+               # Verticales de 4
 
                # Cuadrados de 4
-
-               # Verticales de 4
 
                # Horizontales de 4
 

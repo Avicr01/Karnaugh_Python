@@ -704,8 +704,8 @@ def calcular(arr, ventana, Hventana, var):
             if np.array_equal(tmp, arr2d[:, i]) and \
                 np.array_equal(tmp, arr2d[:, i-1]) and grupo12v == False and grupo8v == False:
                     if i == 0:
-                        canvas.create_rectangle(x1+hor*0, y1+ver*(0), x2+hor*0, y2+ver*(3), outline='red')
-                        canvas.create_rectangle(x1+hor*3, y1+ver*(0), x2+hor*3, y2+ver*(3), outline='red')
+                        canvas.create_rectangle(x1+hor*0, y1+ver*(0), x2+hor*0, y2+ver*(3), outline='#93ac53')
+                        canvas.create_rectangle(x1+hor*3, y1+ver*(0), x2+hor*3, y2+ver*(3), outline='#93ac53')
                     else:
                         canvas.create_rectangle((i-1)*hor+x1, y1+ver*(0), i*hor+x2, y2+ver*3, outline=rancolor())
 
@@ -720,9 +720,9 @@ def calcular(arr, ventana, Hventana, var):
         for j in range(0, 4):
             for i in range(0, 4):
             # Horizontales de 6
-                if arr2d[i, j] == 1 and arr2d[i, j-1] == 1 and arr2d[i, j-2] and \
-                   arr2d[i-1, j] == 1 and arr2d[i-1, j-1] == 1 and arr2d[i-1, j-2] and \
-                       grupo12h == False and grupo8h == False:
+                if arr2d[i, j] == 1 and arr2d[i, j-1] == 1 and arr2d[i, j-2] and arr2d[i, j-3] == 0 and \
+                   arr2d[i-1, j] == 1 and arr2d[i-1, j-1] == 1 and arr2d[i-1, j-2] and arr2d[i-1, j-3] == 0 and \
+                       grupo12h == False and grupo8h == False and grupo6h == False:
                     if i == 0 and j == 0:
                         canvas.create_rectangle(0*hor+x1, y1+ver*0, 0*hor+x2, y2+ver*0, outline="red")
                         canvas.create_rectangle(3*hor+x1, y1+ver*0, 3*hor+x2, y2+ver*0, outline="red")
@@ -797,12 +797,12 @@ def calcular(arr, ventana, Hventana, var):
                 # Cuadrados de 4
                 if arr2d[i, j] == 1 and arr2d[i-1, j] == 1 and arr2d[i, j-1] == 1 and arr2d[i-1, j-1] == 1 \
                     and grupo12h == False and grupo12v == False and grupo8h == False and grupo8v == False \
-                    and grupo6h == False and grupo6v == False:
+                    and grupo6h == False and grupo6v == False and grupo4c == False:
                     if i == 0 and j == 0:
-                        canvas.create_rectangle(0*hor+x1, y1+ver*0, 0*hor+x2, y2+ver*0, outline=rancolor())
-                        canvas.create_rectangle(3*hor+x1, y1+ver*0, 3*hor+x2, y2+ver*0, outline=rancolor())
-                        canvas.create_rectangle(3*hor+x1, y1+ver*0, 3*hor+x2, y2+ver*0, outline=rancolor())
-                        canvas.create_rectangle(3*hor+x1, y1+ver*3, 3*hor+x2, y2+ver*3, outline=rancolor())
+                        canvas.create_rectangle(0*hor+x1, y1+ver*0, 0*hor+x2, y2+ver*0, outline="#F83838")
+                        canvas.create_rectangle(3*hor+x1, y1+ver*0, 3*hor+x2, y2+ver*0, outline="#F83838")
+                        canvas.create_rectangle(0*hor+x1, y1+ver*3, 0*hor+x2, y2+ver*3, outline="#F83838")
+                        canvas.create_rectangle(3*hor+x1, y1+ver*3, 3*hor+x2, y2+ver*3, outline="#F83838")
                     elif i == 0:
                         canvas.create_rectangle((j-1)*hor+x1, y1+ver*0, j*hor+x2, y2+ver*0, outline="orange")
                         canvas.create_rectangle((j-1)*hor+x1, y1+ver*3, j*hor+x2, y2+ver*3, outline="orange")
@@ -811,6 +811,11 @@ def calcular(arr, ventana, Hventana, var):
                         canvas.create_rectangle(3*hor+x1, y1+ver*(i-1), 3*hor+x2, y2+ver*i, outline="orange")
                     else:
                         canvas.create_rectangle((j-1)*hor+x1, y1+ver*(i-1), j*hor+x2, y2+ver*i, outline=rancolor())
+
+                    grupo4c = True
+
+                    if count == 10:
+                        grupo4c == False
 
                     tmp_arr = np.zeros((4, 4), dtype=int)
                     tmp_arr[i, j] = 1
@@ -822,84 +827,90 @@ def calcular(arr, ventana, Hventana, var):
                         arr2d = tmp_arr
 
             # Grupos de 3
-                # Horizontales de 3
-                if arr2d[i,j]==1 and arr2d[i-1,j]==1 and arr2d[i-2,j]==1 \
-                    and arr2d[i,j-3]==0 and arr2d[i,j-1]==0\
-                    and arr2d[i-1,j-3]==0 and arr2d[i-1,j-1]==0\
-                    and arr2d[i-2,j-3]==0 and arr2d[i-2,j-3]==0\
-                    and arr2d[i-3,j]==0:
-                    if i == 0:
-                        canvas.create_rectangle(x1+hor*j, y1+ver*(0), x2+hor*j, y2+ver*(0),outline='red')
-                        canvas.create_rectangle(x1+hor*j, y1+ver*(3), x2+hor*j, y2+ver*(3),outline='red')
-                        canvas.create_rectangle(x1+hor*j, y1+ver*(2), x2+hor*j, y2+ver*(3),outline='green')
-                    elif i == 1:
-                        canvas.create_rectangle(x1+hor*j, y1+ver*(0), x2+hor*j, y2+ver*(1),outline='orange')
-                        canvas.create_rectangle(x1+hor*j, y1+ver*(3), x2+hor*j, y2+ver*(3),outline='blue')
-                        canvas.create_rectangle(x1+hor*j, y1+ver*(0), x2+hor*j, y2+ver*(0),outline='blue')
-                    else:
-                        canvas.create_rectangle(j*hor+x1, y1+ver*(i-1), j*hor+x2, y2+ver*i,outline=rancolor())
-                        canvas.create_rectangle(j*hor+x1, y1+ver*(i-2), j*hor+x2, y2+ver*(i-1),outline=rancolor())
-                    grupo3h = True
-                    arr2d[i, j] = 0
-                    arr2d[i-1, j] = 0
-                    arr2d[i-2, j] = 0
-
-                # Verticales de 3
-                if arr2d[i,j]==1 and arr2d[i,j-1]==1 and arr2d[i,j-2]==1\
-                    and arr2d[i-3,j]==0 and arr2d[i-1,j]==0\
-                    and arr2d[i-3,j-1]==0 and arr2d[i-1,j-1]==0\
-                    and arr2d[i-3,j-2]==0 and arr2d[i-1,j-2]==0\
-                    and arr2d[i,j-3]==0:
-                    if j == 1:
-                        canvas.create_rectangle(x1+hor*0, y1+ver*i, x2+hor*0, y2+ver*i,outline='red')
-                        canvas.create_rectangle(x1+hor*3, y1+ver*i, x2+hor*3, y2+ver*i,outline='red')
-                        canvas.create_rectangle(x1+hor*0, y1+ver*i, x2+hor*1, y2+ver*i,outline='green')
-                    elif j == 0:
-                        canvas.create_rectangle(x1+hor*2, y1+ver*i, x2+hor*3, y2+ver*i,outline='orange')
-                        canvas.create_rectangle(x1+hor*0, y1+ver*i, x2+hor*0, y2+ver*i,outline='blue')
-                        canvas.create_rectangle(x1+hor*3, y1+ver*i, x2+hor*3, y2+ver*i,outline='blue')
-                    else :
-                        canvas.create_rectangle((j-1)*hor+x1, y1+ver*i, j*hor+x2, y2+ver*i,outline=rancolor())
-                        canvas.create_rectangle((j-2)*hor+x1, y1+ver*i, (j-1)*hor+x2, y2+ver*i,outline=rancolor())
-                    grupo3v = True
-                    arr2d[i, j] = 0
-                    arr2d[i, j-1] = 0
-                    arr2d[i, j-2] = 0
+#                # Horizontales de 3
+#                if arr2d[i,j]==1 and arr2d[i-1,j]==1 and arr2d[i-2,j]==1 \
+#                    and arr2d[i,j-3]==0 and arr2d[i,j-1]==0\
+#                    and arr2d[i-1,j-3]==0 and arr2d[i-1,j-1]==0\
+#                    and arr2d[i-2,j-3]==0 and arr2d[i-2,j-3]==0\
+#                    and arr2d[i-3,j]==0:
+#                    if i == 0:
+#                        canvas.create_rectangle(x1+hor*j, y1+ver*(0), x2+hor*j, y2+ver*(0),outline='red')
+#                        canvas.create_rectangle(x1+hor*j, y1+ver*(3), x2+hor*j, y2+ver*(3),outline='red')
+#                        canvas.create_rectangle(x1+hor*j, y1+ver*(2), x2+hor*j, y2+ver*(3),outline='green')
+#                    elif i == 1:
+#                        canvas.create_rectangle(x1+hor*j, y1+ver*(0), x2+hor*j, y2+ver*(1),outline='orange')
+#                        canvas.create_rectangle(x1+hor*j, y1+ver*(3), x2+hor*j, y2+ver*(3),outline='blue')
+#                        canvas.create_rectangle(x1+hor*j, y1+ver*(0), x2+hor*j, y2+ver*(0),outline='blue')
+#                    else:
+#                        canvas.create_rectangle(j*hor+x1, y1+ver*(i-1), j*hor+x2, y2+ver*i,outline=rancolor())
+#                        canvas.create_rectangle(j*hor+x1, y1+ver*(i-2), j*hor+x2, y2+ver*(i-1),outline=rancolor())
+#                    grupo3h = True
+#                    arr2d[i, j] = 0
+#                    arr2d[i-1, j] = 0
+#                    arr2d[i-2, j] = 0
+#
+#                # Verticales de 3
+#                if arr2d[i,j]==1 and arr2d[i,j-1]==1 and arr2d[i,j-2]==1\
+#                    and arr2d[i-3,j]==0 and arr2d[i-1,j]==0\
+#                    and arr2d[i-3,j-1]==0 and arr2d[i-1,j-1]==0\
+#                    and arr2d[i-3,j-2]==0 and arr2d[i-1,j-2]==0\
+#                    and arr2d[i,j-3]==0:
+#                    if j == 1:
+#                        canvas.create_rectangle(x1+hor*0, y1+ver*i, x2+hor*0, y2+ver*i,outline='red')
+#                        canvas.create_rectangle(x1+hor*3, y1+ver*i, x2+hor*3, y2+ver*i,outline='red')
+#                        canvas.create_rectangle(x1+hor*0, y1+ver*i, x2+hor*1, y2+ver*i,outline='green')
+#                    elif j == 0:
+#                        canvas.create_rectangle(x1+hor*2, y1+ver*i, x2+hor*3, y2+ver*i,outline='orange')
+#                        canvas.create_rectangle(x1+hor*0, y1+ver*i, x2+hor*0, y2+ver*i,outline='blue')
+#                        canvas.create_rectangle(x1+hor*3, y1+ver*i, x2+hor*3, y2+ver*i,outline='blue')
+#                    else :
+#                        canvas.create_rectangle((j-1)*hor+x1, y1+ver*i, j*hor+x2, y2+ver*i,outline=rancolor())
+#                        canvas.create_rectangle((j-2)*hor+x1, y1+ver*i, (j-1)*hor+x2, y2+ver*i,outline=rancolor())
+#                    grupo3v = True
+#                    arr2d[i, j] = 0
+#                    arr2d[i, j-1] = 0
+#                    arr2d[i, j-2] = 0
 
 
         # Multicombo
         for j in range(0, 4):
             for i in range(0, 4):
+                flagH2 = False
+                flagV2 = False 
                 # Verticales de 2
                 if arr2d[i, j] == 1 and arr2d[i-1, j] == 1 and (arr2d[i-2, j] == 0 or arr2d[i-3, j] == 0) \
-                    and arr2d[i-1, j-1] == 0 and arr2d[i-1, j-3] == 0:
+                    and arr2d[i-1, j-1] == 0 and arr2d[i-1, j-3] == 0 and flagV2 == False:
                         if i == 0:
                             canvas.create_rectangle(j*hor+x1, y1+ver*(0), j*hor+x2, y2+ver*(0), outline="blue")
                             canvas.create_rectangle(j*hor+x1, y1+ver*(3), j*hor+x2, y2+ver*(3), outline="blue")
                         else:
                             canvas.create_rectangle(j*hor+x1, y1+ver*(i-1), j*hor+x2, y2+ver*(i), outline=rancolor())
+                        flagV2 == True
                 if arr2d[i, j] == 1 and arr2d[i-3, j] == 1 and (arr2d[i-1, j] == 0 or arr2d[i-2, j] == 0) \
-                    and arr2d[i-3, j-1] == 0 and arr2d[i-3, j-3] == 0:
+                    and arr2d[i-3, j-1] == 0 and arr2d[i-3, j-3] == 0 and flagV2 == False:
                         if i == 3:
                             canvas.create_rectangle(j*hor+x1, y1+ver*(0), j*hor+x2, y2+ver*(0), outline="blue")
                             canvas.create_rectangle(j*hor+x1, y1+ver*(3), j*hor+x2, y2+ver*(3), outline="blue")
                         else:
                             canvas.create_rectangle(j*hor+x1, y1+ver*(i), j*hor+x2, y2+ver*(i+1), outline=rancolor())
+                        flagV2 == True
                 # Horizontales de 2
                 if arr2d[i, j] == 1 and arr2d[i, j-1] == 1 and (arr2d[i, j-2] == 0 or arr2d[i, j-3] == 0) \
-                    and arr2d[i-1, j-1] == 0 and arr2d[i-3, j-1] == 0:
+                    and arr2d[i-1, j-1] == 0 and arr2d[i-3, j-1] == 0 and flagH2 == False:
                         if j == 0:
                             canvas.create_rectangle(0*hor+x1, y1+ver*(i), 0*hor+x2, y2+ver*(i), outline="blue")
                             canvas.create_rectangle(3*hor+x1, y1+ver*(i), 3*hor+x2, y2+ver*(i), outline="blue")
                         else:
                             canvas.create_rectangle((j-1)*hor+x1, y1+ver*(i), j*hor+x2, y2+ver*(i), outline=rancolor())
+                        flagH2 == True
                 if arr2d[i, j] == 1 and arr2d[i, j-3] == 1 and (arr2d[i, j-1] == 0 or arr2d[i, j-2] == 0) \
-                    and arr2d[i-1, j-3] == 0 and arr2d[i-3, j-3] == 0:
+                    and arr2d[i-1, j-3] == 0 and arr2d[i-3, j-3] == 0 and flagH2 == False:
                         if j == 3:
                             canvas.create_rectangle(0*hor+x1, y1+ver*(i), 0*hor+x2, y2+ver*(i), outline="blue")
                             canvas.create_rectangle(3*hor+x1, y1+ver*(i), 3*hor+x2, y2+ver*(i), outline="blue")
                         else:
                             canvas.create_rectangle(j*hor+x1, y1+ver*(i), (j+1)*hor+x2, y2+ver*(i), outline=rancolor())
+                        flagH2 == True
 
 #                        if grupo3h:
 #                            if arr_tmp[i, j] != arr2d[i, j] and arr_tmp[i-1, j] != arr2d[i-1, j] and \

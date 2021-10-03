@@ -22,14 +22,47 @@ PicTable4 = ImageTk.PhotoImage(file="interface/images/4v.png")
 PicK2 = ImageTk.PhotoImage(file="interface/images/kar2.png")
 PicK3 = ImageTk.PhotoImage(file="interface/images/kar3.png")
 PicK4 = ImageTk.PhotoImage(file="interface/images/kar4.png")
-
+#-----------------Positions------------------------------
+def Posicion(j,i):
+    if   i == 0 and j == 0:
+        return 0
+    if   i == 1 and j == 0:
+        return 1
+    if   i == 2 and j == 0:
+        return 2
+    if   i == 3 and j == 0:
+        return 3
+    if   i == 0 and j == 1:
+        return 4
+    if   i == 1 and j == 1:
+        return 5
+    if   i == 2 and j == 1:
+        return 6
+    if   i == 3 and j == 1:
+        return 7
+    if   i == 0 and j == 2:
+        return 8
+    if   i == 1 and j == 2:
+        return 9
+    if   i == 2 and j == 2:
+        return 10
+    if   i == 3 and j == 2:
+        return 11
+    if   i == 0 and j == 3:
+        return 12
+    if   i == 1 and j == 3:
+        return 13
+    if   i == 2 and j == 3:
+        return 14
+    if   i == 3 and j == 3:
+        return 15
 
 #---- Color aleatorio de los cuadrados ---------------
 
 def rancolor():
     return "#" + ''.join(random.choice('0123456789AB') for j in range(6))
 
-#------------Funcion evaluar mapas de Karnaugh-------------
+#------------Funcion evaluar mapas de Karnaugh -------------
 
 def calcular(arr, ventana, Hventana, var):
     label = ""
@@ -48,7 +81,7 @@ def calcular(arr, ventana, Hventana, var):
         canvas.place(x = 280, y = 92)
         canvas_label = tkinter.Canvas(ventana, height=300, width=250)
 
-        # Dibujar el mapa
+        # Dibujar el mapa  de 2222222222222222222222222222222222
         karnaugh_img = canvas.create_image((0,0), image=PicK2, anchor=tkinter.N + tkinter.W)
         fila1 = "{}          {}".format(listing[0], listing[1])
         fila2 = "\n\n{}          {}".format(listing[2], listing[3])
@@ -575,7 +608,7 @@ def calcular(arr, ventana, Hventana, var):
         canvas_label = tkinter.Canvas(ventana, height=300, width=400)
         canvas_label.place(x = 300, y = 500)
 
-        # Dibujar el mapa
+        # Dibujar el mapa de cuatro 4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
         karnaugh_img = canvas.create_image((0,0), image=PicK4, anchor=tkinter.N + tkinter.W)
         fila1 = "{}            {}             {}          {}".format(listing[0], listing[1], listing[3], listing[2])
         fila2 = "\n\n{}             {}            {}          {}".format(listing[4], listing[5], listing[7], listing[6])
@@ -653,7 +686,7 @@ def calcular(arr, ventana, Hventana, var):
                 if arr2d[i, j] == 1 and arr2d[i - 1, j] == 0 and arr2d[i - 3, j] == 0 and arr2d[i, j - 3] == 0 and arr2d[i, j - 1] == 0:
                     canvas.create_rectangle(j*hor+x1, y1+ver*i, j*hor+x2, y2+ver*i, outline=rancolor())
                     arr2d[i, j] = 0
-                    label += gp.agrupador(1, iterador)
+                    label += gp.agrupador(1, [Posicion(i,j)])
 
             # Grupos de 2
                # Verticales de 2
@@ -664,12 +697,16 @@ def calcular(arr, ventana, Hventana, var):
                     if i == 0:
                         canvas.create_rectangle(x1+hor*j, y1+ver*(0), x2+hor*j, y2+ver*(0), outline='red')
                         canvas.create_rectangle(x1+hor*j, y1+ver*(3), x2+hor*j, y2+ver*(3), outline='red')
+
+                        label += gp.agrupador(2,[ j , (j+12)])
+                        #print([ j , (j+12)])
                     else:
                         canvas.create_rectangle(j*hor+x1, y1+ver*(i - 1), j*hor+x2, y2+ver*i, outline=rancolor())
                     
                     arr2d[i, j] = 0
                     arr2d[i-1, j] = 0
-                    # label += gp.agrupador(2, [[i, j], [i-1, j-1]])
+                    label += gp.agrupador(2, [Posicion(i-1,j), Posicion(i,j)])
+                    #print([Posicion(i-1,j), Posicion(i,j)])
 
                # Horizontales de 2
                 if arr2d[i, j] == 1 and arr2d[i, j-1] == 1 \
@@ -679,11 +716,15 @@ def calcular(arr, ventana, Hventana, var):
                     if j == 0:
                         canvas.create_rectangle(x1+hor*0, y1+ver*(i), x2+hor*0, y2+ver*(i), outline='red')
                         canvas.create_rectangle(x1+hor*3, y1+ver*(i), x2+hor*3, y2+ver*(i), outline='red')
+                        label += gp.agrupador(2,[(i+3*i),(i+3*i)+3])
+                        #print([(i+3*i),(i+3*i)+3])
                     else:
                         canvas.create_rectangle((j - 1)*hor+x1, y1+ver*i, j*hor+x2, y2+ver*i, outline=rancolor())
                     arr2d[i, j] = 0
                     arr2d[i, j-1] = 0
-                    # label += gp.agrupador(2, [[i, j], [i-1, j-1]])
+                    label += gp.agrupador(2, [Posicion(i,j-1), Posicion(i,j)])
+                    #print([Posicion(i,j-1), Posicion(i,j)])
+                    
                 iterador+=1
 
 
@@ -698,13 +739,16 @@ def calcular(arr, ventana, Hventana, var):
                         if i == 0:
                             canvas.create_rectangle(x1+hor*0, y1+ver*(0), x2+hor*3, y2+ver*(0), outline='red')
                             canvas.create_rectangle(x1+hor*0, y1+ver*(3), x2+hor*3, y2+ver*(3), outline='red')
+                            label+= gp.agrupador(8, [0,1,2,3,12,13,14,15])
                         else:
                             canvas.create_rectangle(0*hor+x1, y1+ver*(i - 1), 3*hor+x2, y2+ver*i, outline=rancolor())
                         if np.array_equal(tmp2, arr2d[i-2][:]) and \
                         np.array_equal(tmp2, arr2d[i-3][:]):
                             arr2d[i][:] = [0, 0, 0, 0]
                             arr2d[i-1][:] = [0, 0, 0, 0]
-                    #label += gp.agrupador(4, [])
+                        label+=gp.agrupador(8,[(0+4*(i-1)) , (1+4*(i-1)) ,(2+4*(i-1)) , (3+4*(i-1)) , (4+4*(i-1)) , (5+4*(i-1)) , (6+4*(i-1)) , (7+4*(i-1))])
+                        print([(0+4*(i-1)) , (1+4*(i-1)) ,(2+4*(i-1)) , (3+4*(i-1)) , (4+4*(i-1)) , (5+4*(i-1)) , (6+4*(i-1)) , (7+4*(i-1))])
+                        print("individual")
                     
            # Verticales de 8
                 if np.array_equal(tmp, arr2d[:, i]) and \
@@ -712,6 +756,7 @@ def calcular(arr, ventana, Hventana, var):
                         if i == 0:
                             canvas.create_rectangle(x1+hor*0, y1+ver*(0), x2+hor*0, y2+ver*(3), outline='#93ac53')
                             canvas.create_rectangle(x1+hor*3, y1+ver*(0), x2+hor*3, y2+ver*(3), outline='#93ac53')
+                            label+= gp.agrupador(8, [0,3,4,7,8,11,12,15])
                         else:
                             canvas.create_rectangle((i-1)*hor+x1, y1+ver*(0), i*hor+x2, y2+ver*3, outline=rancolor())
 
@@ -720,7 +765,9 @@ def calcular(arr, ventana, Hventana, var):
                         np.array_equal(tmp2, arr2d[:][i-3]):
                             arr2d[:][i-2] = [0, 0, 0, 0]
                             arr2d[:][i-3] = [0, 0, 0, 0]
-                    #label += gp.agrupador(4, [[i, j], [i-1, j-1]])
+                        label += gp.agrupador(8, [0+1*(i-1),1+1*(i-1),4+1*(i-1),5+1*(i-1),8+1*(i-1),9+1*(i-1),12+1*(i-1),13+1*(i-1)])
+                        print([0+1*(i-1),1+1*(i-1),4+1*(i-1),5+1*(i-1),8+1*(i-1),9+1*(i-1),12+1*(i-1),13+1*(i-1)])
+                        print("individual")
 
 
         for j in range(0, 4):
@@ -838,10 +885,14 @@ def calcular(arr, ventana, Hventana, var):
                         if i == 0:
                             canvas.create_rectangle(x1+hor*0, y1+ver*(0), x2+hor*3, y2+ver*(0), outline='red')
                             canvas.create_rectangle(x1+hor*0, y1+ver*(3), x2+hor*3, y2+ver*(3), outline='red')
+                            label+= gp.agrupador(8, [0,1,2,3,12,13,14,15])
                         else:
                             canvas.create_rectangle(0*hor+x1, y1+ver*(i - 1), 3*hor+x2, y2+ver*i, outline=rancolor())
                         grupo8h = True
                         contadorM8 += 1
+                        label+=gp.agrupador(8,[(0+4*(i-1)) , (1+4*(i-1)) ,(2+4*(i-1)) , (3+4*(i-1)) , (4+4*(i-1)) , (5+4*(i-1)) , (6+4*(i-1)) , (7+4*(i-1))])
+                        print([(0+4*(i-1)) , (1+4*(i-1)) ,(2+4*(i-1)) , (3+4*(i-1)) , (4+4*(i-1)) , (5+4*(i-1)) , (6+4*(i-1)) , (7+4*(i-1))])
+                        print("multicombos")
                         #label += gp.agrupador(4, [])
                         if counter == 14:
                             print("EVALUA 13 HOR")
@@ -859,10 +910,14 @@ def calcular(arr, ventana, Hventana, var):
                         if i == 0:
                             canvas.create_rectangle(x1+hor*0, y1+ver*(0), x2+hor*0, y2+ver*(3), outline='#93ac53')
                             canvas.create_rectangle(x1+hor*3, y1+ver*(0), x2+hor*3, y2+ver*(3), outline='#93ac53')
+                            label+= gp.agrupador(8, [0,3,4,7,8,11,12,15])
                         else:
                             canvas.create_rectangle((i-1)*hor+x1, y1+ver*(0), i*hor+x2, y2+ver*3, outline=rancolor())
                         contadorM8 += 1
                         grupo8v = True
+                        label += gp.agrupador(8, [0+1*(i-1),1+1*(i-1),4+1*(i-1),5+1*(i-1),8+1*(i-1),9+1*(i-1),12+1*(i-1),13+1*(i-1)])
+                        print([0+1*(i-1),1+1*(i-1),4+1*(i-1),5+1*(i-1),8+1*(i-1),9+1*(i-1),12+1*(i-1),13+1*(i-1)])
+                        print("multicombos")
                         #label += gp.agrupador(4, [[i, j], [i-1, j-1]])
 
                         if counter == 14:

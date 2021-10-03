@@ -1532,4 +1532,9 @@ def kmaps3 (listing, label):
          label += "Grupo de 2 = [5],[1]\n"
          label += "Funcion simplificada, f(P, Q, R) = P'R' + P'Q + PQ'R \n"
 
+    elif line1 == (1,1,0,1) and line2 == (1,1,0,0):
+         label += "Grupo de 2 = [1],[4]\n"
+         label += "Grupo de 4 = [1],[2],[5],[6]\n"
+         label += "Funcion simplificada, f(P, Q, R) = P'R' + P'Q + PQ'R \n" 
+
     return label

@@ -676,7 +676,7 @@ def calcular(arr, ventana, Hventana, var):
         
         if counter == 16:
             canvas.create_rectangle(0*hor+x1, y1+ver*0, 3*hor+x2, y2+ver*3, outline=rancolor())
-            label = "F = 0"
+            label = "F = 0   "
             arr2d = np.zeros((4, 4), dtype=int)
 
 
@@ -1247,7 +1247,10 @@ def calcular(arr, ventana, Hventana, var):
 
 
         # Poner la funcion simplificada 
-        label_fun = canvas_label.create_text((200, 50), text=label)
+        largo = len(label)
+        label_2 = label[:largo -3]
+        label_fun = canvas_label.create_text((200, 50), text=label_2)
+
 
         print(label)
 

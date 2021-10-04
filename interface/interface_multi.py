@@ -990,17 +990,22 @@ def calcular(arr, ventana, Hventana, var):
                     if np.array_equal(tmp, arr2d[i][:]) \
                         and grupo12h == False and grupo8h == False and grupo4h == False and grupo6h == False and grupo6v == False:
                         canvas.create_rectangle(0*hor+x1, y1+ver*(i), 3*hor+x2, y2+ver*(i), outline=rancolor())
+                        label += gp.agrupador(4, [0,1,2,3])
+                        print([0,1,2,3])
                         print("EVALUA")
                     
                         if np.array_equal(tmp2, arr2d[i-1][:]) and \
                             np.array_equal(tmp2, arr2d[i-3][:]):
                                 arr2d[i][:] = np.zeros((4), dtype=int)
-                        #label += gp.agrupador(4, [])
+                                label += gp.agrupador(4, [0+4*(i-1),1+4*(i-1),2+4*(i-1),3+4*(i-1)])
+                                print([0+4*(i),1+4*(i),2+4*(i),3+4*(i)])
 
                # Verticales de 4
                     if np.array_equal(tmp, arr2d[:, i]) \
                         and grupo12v == False and grupo8v == False and grupo6h == False and grupo6v == False:
                         canvas.create_rectangle(i*hor+x1, y1+ver*(0), i*hor+x2, y2+ver*(3), outline=rancolor())
+                        label += gp.agrupador(4, [0+1*i,4+1*i,8+1*i,12+1*i])
+                        print([0+1*i,4+1*i,8+1*i,12+1*i])
                         #label += gp.agrupador(4, [[i, j], [i-1, j-1]])
                         print("EVALUA VERTICAL")
 

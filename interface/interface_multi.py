@@ -1023,14 +1023,21 @@ def calcular(arr, ventana, Hventana, var):
                             canvas.create_rectangle(3*hor+x1, y1+ver*0, 3*hor+x2, y2+ver*0, outline="#F83838")
                             canvas.create_rectangle(0*hor+x1, y1+ver*3, 0*hor+x2, y2+ver*3, outline="#F83838")
                             canvas.create_rectangle(3*hor+x1, y1+ver*3, 3*hor+x2, y2+ver*3, outline="#F83838")
+                            label += gp.agrupador(4, [0,3,12,15])
                         elif i == 0:
                             canvas.create_rectangle((j-1)*hor+x1, y1+ver*0, j*hor+x2, y2+ver*0, outline="orange")
                             canvas.create_rectangle((j-1)*hor+x1, y1+ver*3, j*hor+x2, y2+ver*3, outline="orange")
+                            label += gp.agrupador(4, [0+1*(j-1),1+1*(j-1),12+1*(j-1),13+1*(j-1)])
+                            print([0+1*(j-1),1+1*(j-1),12+1*(j-1),13+1*(j-1)])
                         elif j == 0:
                             canvas.create_rectangle(0*hor+x1, y1+ver*(i-1), 0*hor+x2, y2+ver*i, outline="orange")
                             canvas.create_rectangle(3*hor+x1, y1+ver*(i-1), 3*hor+x2, y2+ver*i, outline="orange")
+                            label += gp.agrupador(4, [0+4*(i-1),3+4*(i-1),4+4*(i-1),7+4*(i-1)])
+                            print([0+4*(i-1),3+4*(i-1),4+4*(i-1),7+4*(i-1)])
                         else:
                             canvas.create_rectangle((j-1)*hor+x1, y1+ver*(i-1), j*hor+x2, y2+ver*i, outline=rancolor())
+                            label += gp.agrupador(4,[0+1*(i-1),1+1*(i-1),4+1*(i-1),5+1*(i-1)])
+                            print ([0+1*(i-1),1+1*(i-1),4+1*(i-1),5+1*(i-1)])
 
                         grupo4c = True
 
